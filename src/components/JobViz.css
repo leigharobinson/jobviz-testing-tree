@@ -1,0 +1,6 @@
+.jobviz-parent {
+  display: flex;
+  border: solid black 2px;
+  justify-content: center;
+  margin: 25px;
+}

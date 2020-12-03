@@ -1,13 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
-import {JobViz} from "./components/JobViz"
+import {JobViz} from "../src/components/JobViz"
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <JobViz />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 

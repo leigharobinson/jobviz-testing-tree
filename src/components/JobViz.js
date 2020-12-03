@@ -1,12 +1,14 @@
 import React from "react"
-import "./JobViz.css"
+import ApplicationViews from "./ApplicationViews";
 
-export const JobViz = () => (
-    <>
-        <h2>Job Viz</h2>
-        <small>What do you want to be?</small>
-        <address>
-            
-        </address>
-    </>
-)
+
+ export const JobViz = () => {
+    return (
+      <>
+        <ApplicationViews />
+      </>
+    );
+  };
+  
+
+  
