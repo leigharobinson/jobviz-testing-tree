@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
-import Home from "./home/Home";
+import {Jobs} from "./jobs/Jobs";
+import {JobCatagoresList} from "../components/level1/JobCatagoresList"
 
 
 //only include these once they are built - previous practice exercise
@@ -39,11 +40,17 @@ const ApplicationViews = () => {
           exact
           path="/"
           render={(props) => {
-              return <Home {...props} />;
+              return <Jobs {...props} />;
           }}
         />
-        {/* ///////////////////ANIMALS/////////////////// */}
-      
+        {/* ///////////////////Job Catagories/////////////////// */}
+        <Route
+          exact
+          path="/job-catagories-l1"
+          render={(props) => {
+              return <JobCatagoresList {...props} />;
+          }}
+        />
       </Switch>
     </React.Fragment>
   );

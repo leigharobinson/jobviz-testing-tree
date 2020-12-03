@@ -1,0 +1,28 @@
+.jobviz-parent {
+  display: flex;
+  border: solid black 2px;
+  justify-content: center;
+  margin: 25px;
+}
+
+.jobs-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid red 5px;
+  /* padding: 1em; */
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 480px) {
+  .purple-dot-background {
+    width: 8px;
+    height: 8px;
+    background: url(../../images/PurpleDot.svg) no-repeat center;
+    /* padding: 1em; */
+  }
+  p {
+    font-size: 15px;
+  }
+}
