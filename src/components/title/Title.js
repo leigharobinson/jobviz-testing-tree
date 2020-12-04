@@ -1,5 +1,5 @@
 import React from "react"
-import "../../styling/Style.css"
+import "../styling/Style.css"
 
   export const Title = () => (
     <>

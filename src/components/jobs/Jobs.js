@@ -12,7 +12,7 @@ export const Jobs = (props) => (
                 <div type="button"
                     className="purple-dot-background"
                     onClick={() => {
-                    props.history.push("/job-catagories-l1");
+                    props.history.push("/job-catagories");
                     // console.log("you clicked me");
             }}></div>
             
