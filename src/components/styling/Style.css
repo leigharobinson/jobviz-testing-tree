@@ -1,28 +1,64 @@
 .jobviz-parent {
   display: flex;
-  border: solid black 2px;
+  /* border: solid black 2px; */
   justify-content: center;
-  margin: 25px;
+  /* margin: 25px; */
+  align-items: center;
 }
 
 .jobs-parent {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  border: solid red 5px;
+  /* border: solid red 5px; */
   /* padding: 1em; */
   width: 100%;
   height: auto;
 }
+.jobviz-parent-level1 {
+  display: flex;
+  /* border: solid black 2px; */
+  justify-content: flex-start;
+  align-self: center;
+  padding-top: 1px;
+}
+.purple-dot-background {
+  width: 70px;
+  height: 70px;
+  background: url(../../images/PurpleDot.svg) no-repeat center;
+  margin: 2px;
+}
+p {
+  font-size: 2.5em;
+}
+.purple-dot-background-level1 {
+  width: 10px;
+  height: 10px;
+  background: url(../../images/PurpleDot.svg) no-repeat center;
+  padding-right: 0.5rem;
+}
+.listed-categories {
+  font-size: 1.5em;
+}
 
 @media screen and (max-width: 480px) {
   .purple-dot-background {
-    width: 8px;
-    height: 8px;
-    background: url(../../images/PurpleDot.svg) no-repeat center;
-    /* padding: 1em; */
+    width: 20px;
+    height: 20px;
+    background: url(../../images/PurpleDot.svg) no-repeat;
+    margin: 2px;
   }
   p {
-    font-size: 15px;
+    font-size: 1.5em;
+  }
+  .purple-dot-background-level1 {
+    width: 12px;
+    height: 12px;
+    background: url(../../images/PurpleDot.svg) no-repeat left;
+    padding-right: 0.5rem;
+  }
+  .listed-categories {
+    font-size: 12px;
+    word-wrap: normal;
   }
 }

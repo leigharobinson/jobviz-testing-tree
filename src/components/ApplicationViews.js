@@ -1,9 +1,11 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
 import {Jobs} from "./jobs/Jobs";
-import {JobCatagoresList} from "../components/level1/JobCatagoresList"
-
-
+import {JobCatagoriesList} from "./level0/JobCatagoriesList"
+import {Architecture} from "./level1/ArchitectureListL1"
+import {Arts} from "./level1/ArtsListL1"
+import {ArtDesignWorkers} from "./level2/ArtDesignWorkersL2"
+import {ArtistsRelatedWorkers} from "./level3/Artists&RelatedWorkersL3"
 //only include these once they are built - previous practice exercise
 // import LocationList from "./location/LocationList";
 // import LocationDetail from "./location/LocationDetail";
@@ -46,9 +48,37 @@ const ApplicationViews = () => {
         {/* ///////////////////Job Catagories/////////////////// */}
         <Route
           exact
-          path="/job-catagories-l1"
+          path="/job-catagories"
           render={(props) => {
-              return <JobCatagoresList {...props} />;
+              return <JobCatagoriesList {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/job-catagories/architecture-&-engineering-occupations"
+          render={(props) => {
+              return <Architecture {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/job-catagories/arts,-design,-etc"
+          render={(props) => {
+              return <Arts {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/job-catagories/arts,-design,-etc/art-&-design-workers"
+          render={(props) => {
+              return <ArtDesignWorkers {...props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/job-catagories/arts,-design,-etc/art-&-design-workers/artists-&-related-workers"
+          render={(props) => {
+              return <ArtistsRelatedWorkers {...props} />;
           }}
         />
       </Switch>
