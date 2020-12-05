@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
-import {JobCatagoriesCardL2} from "./JobCategoriesCardL2"
+// import {JobCatagoriesCardL2} from "./JobCategoriesCardL2"
 // import {PurpleDot} from "../../images/PrupleDot"
 
 export const ArtDesignWorkers = (props) => {

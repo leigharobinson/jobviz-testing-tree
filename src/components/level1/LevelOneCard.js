@@ -4,8 +4,8 @@ import {makeUrlPath} from "../Helper"
 
 
 export const LevelOneCard = (props) => {
-let levelOneUrl = props.levelOneUrl
-let categoryStr = props.orderedCategory
+let levelOneUrl = props.levelOneUrl;
+let categoryStr = props.orderedCategory;
 let category = makeUrlPath(categoryStr);
 
 // console.log(category)

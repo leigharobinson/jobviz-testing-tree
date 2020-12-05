@@ -5,7 +5,14 @@
   /* margin: 25px; */
   align-items: center;
 }
-
+/* JobCategoriesLis */
+.yellow {
+  border: solid yellow 3px;
+}
+/* LevelOneList */
+.l1-color-border {
+  border: solid blue 3px;
+}
 .jobs-parent {
   display: flex;
   justify-content: start;

@@ -3,47 +3,54 @@ import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {JobCatagoriesCard} from "./JobCatagoriesCard"
-// import {PurpleDot} from "../../images/PrupleDot"
+
 
 export const JobCatagoriesList = (props) => {
+    //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
-    const [levelOne, setLevelOne] = useState([]);
+    //where we set the id of the category that was clicked to sate
+    const [levelOneStr, setLevelOneStr] = useState([]);
 
-    const GetJobCatagories = () => {
-        return JobManager.getAll().then((jobs) => {
+   //set job obj from GET call to state
+    useEffect(() => {
+        JobManager.getAll().then((jobs) => {
             setJobs(jobs)
         })
-    }
-    useEffect(() => {
-        GetJobCatagories()
     }, []);
 
-    let LevelOneList = []
-    const filterJobCatLevelONe = () => jobs.map((jobCategory) => {
-        if (jobCategory.Level1 !== "NA" && !LevelOneList.includes(jobCategory.Level1)) {
-            LevelOneList.push(jobCategory.Level1)
+    //empty arry to push names of targeted level (Level1)
+    let levelList = []
+    const filterLevelOne = () => jobs.map((jobCategory) => {
+        if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
+            levelList.push(jobCategory.Level1)
         }
 
     })
-    filterJobCatLevelONe()  
-    const AlphaList = LevelOneList.sort()
-    // console.log("LevelOneList", LevelOneList)
+    //call filter
+    filterLevelOne()
+    //alphabitize sorted list to use when mapping array to DOM  
+    const alphaList = levelList.sort()
 
 
 
-    
-const handleClick = (e) => {
-    e.preventDefault();
-    // console.log(e.target.id);
-    setLevelOne(e.target.id)
-     }
-    //  console.log(levelOne)
+    //This get's the id of whatever category was clicked
+    const handleClick = (e) => {
+        e.preventDefault();
+        // console.log(e.target.id);
+        setLevelOneStr(e.target.id)
+        }
+        //  console.log(levelOneStr)
 
     return (
         <>
             <div>
                 <Title />
-            </div>        
+            </div> 
+            <div className="jobviz-parent">    
+                <div>
+                    <h4>Job Categories List</h4>
+                </div>  
+            </div>   
             <div className="jobviz-parent"> 
                 <div type="button"
                         className="purple-dot-background"
@@ -53,9 +60,10 @@ const handleClick = (e) => {
                 }}></div>  
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {AlphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory) => {
                             return (
-                                <div className="yellow" onClick={handleClick}>
+                                
+                                <div key={orderedCategory} className="" onClick={handleClick}>
                                     <JobCatagoriesCard
                                         
                                         id={orderedCategory.id}
@@ -65,6 +73,7 @@ const handleClick = (e) => {
                                         {...props}
                                     />  
                                 </div>
+                                
                             )
                         })}
                     </div>
