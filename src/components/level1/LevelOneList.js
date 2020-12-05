@@ -2,12 +2,25 @@ import React, { useState, useEffect } from "react";
 import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
-import {JobCatagoriesCardL1} from "./JobCatagoriesCardL1"
+import {LevelOneCard} from "./LevelOneCard"
 // import {PurpleDot} from "../../images/PrupleDot"
 
-export const Architecture = (props) => {
+export const LevelOneList = (props) => {
+    let levelOneUrl = props.category
+
+    let levelOneString = props.category
+
+    const makeStringPath = () => {
+        levelOneString = levelOneString.replace(/-+/g, " ")
+        levelOneString = levelOneString.charAt(0).toUpperCase() + levelOneString.slice(1)
+       
+    }
+    makeStringPath();
+    
+    // console.log(levelOneString)
+
     const [jobs, setJobs] = useState([]);
-    const LevelOne = "architecture-&-engineering-occupations"
+    
     // let re = new RegExp('Architecture')
     const GetJobCatagories = () => {
         return JobManager.getAll().then((jobs) => {
@@ -20,21 +33,26 @@ export const Architecture = (props) => {
 
     let LevelOneList = []
     const filterJobCatLevelONe = () => jobs.map((jobCategory) => {
-        if (jobCategory.Level1 === "Architecture & engineering occupations" && jobCategory.Level2 !== "NA" && !LevelOneList.includes(jobCategory.Level2)) {
+        if (jobCategory.Level1 === levelOneString && jobCategory.Level2 !== "NA" && !LevelOneList.includes(jobCategory.Level2)) {
             LevelOneList.push(jobCategory.Level2)
         }
     
 
     })
+
+   
     filterJobCatLevelONe()  
-    const AlphaList = LevelOneList.sort()
-    console.log("LevelOneList", LevelOneList.length)
+    const alphaList = LevelOneList.sort()
+    // console.log("LevelOneList", LevelOneList)
+
+
+
     return (
         <>
             <div>
                 <Title />
             </div>        
-            <h1>woot level 1 Architecture</h1>
+            <h1>{levelOneString}</h1>
             <div className="jobviz-parent"> 
             
                 <div type="button"
@@ -51,12 +69,12 @@ export const Architecture = (props) => {
                 }}></div>  
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {AlphaList.map((category) => (
-                        <JobCatagoriesCardL1
-                            key={category}
-                            category={category}
+                        {alphaList.map((orderedCategory) => (
+                        <LevelOneCard
+                            key={orderedCategory}
+                            orderedCategory={orderedCategory}
                             jobs={jobs}
-                            LevelOne={LevelOne}
+                            levelOneUrl={levelOneUrl}
                             {...props}
                         />
                         ))}
@@ -65,4 +83,21 @@ export const Architecture = (props) => {
             </div>        
        </> 
     );
-};
+
+    return (
+        <>
+
+        <div className="jobviz-parent"> 
+            
+            <h1>A Test to see if this component is hidden or shown</h1>
+            <h3>{levelOneString}</h3>
+        </div>
+        
+    </>
+
+
+    )
+   
+}
+
+

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 
 
-export const JobCatagoriesCardL1 = (props) => {
+export const LevelTwoCard = (props) => {
 const levelOne = props.LevelOne
-let category = props.category
+let category = props.orderedCategory
 
  const makeUrlPath = () => {
     category = category.replace(/\s+/g, '-').toLowerCase();

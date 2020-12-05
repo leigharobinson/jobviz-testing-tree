@@ -6,16 +6,8 @@ import {JobCatagoriesCard} from "./JobCatagoriesCard"
 // import {PurpleDot} from "../../images/PrupleDot"
 
 export const JobCatagoriesList = (props) => {
-    // const [levelOne, setLevelOne] = useState([]);
-
-    // useEffect(() => {
-    //     JobManager.getLevel("Level1").then((categories) => {
-    //         if(categories.Level1 !== "NA" && !levelOne.includes(categories.Level1)) {
-    //             setLevelOne[levelOne.sort()];
-    //         }
-    //     })}, []);
-  
     const [jobs, setJobs] = useState([]);
+    const [levelOne, setLevelOne] = useState([]);
 
     const GetJobCatagories = () => {
         return JobManager.getAll().then((jobs) => {
@@ -31,12 +23,22 @@ export const JobCatagoriesList = (props) => {
         if (jobCategory.Level1 !== "NA" && !LevelOneList.includes(jobCategory.Level1)) {
             LevelOneList.push(jobCategory.Level1)
         }
-    
 
     })
     filterJobCatLevelONe()  
     const AlphaList = LevelOneList.sort()
-    // console.log("LevelOneList", LevelOneList.length)
+    // console.log("LevelOneList", LevelOneList)
+
+
+
+    
+const handleClick = (e) => {
+    e.preventDefault();
+    // console.log(e.target.id);
+    setLevelOne(e.target.id)
+     }
+    //  console.log(levelOne)
+
     return (
         <>
             <div>
@@ -51,14 +53,20 @@ export const JobCatagoriesList = (props) => {
                 }}></div>  
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {AlphaList.map((category) => (
-                        <JobCatagoriesCard
-                            key={category}
-                            category={category}
-                            jobs={jobs}
-                            {...props}
-                        />
-                        ))}
+                        {AlphaList.map((orderedCategory) => {
+                            return (
+                                <div className="yellow" onClick={handleClick}>
+                                    <JobCatagoriesCard
+                                        
+                                        id={orderedCategory.id}
+                                        key={orderedCategory}
+                                        orderedCategory={orderedCategory}
+                                        jobs={jobs}
+                                        {...props}
+                                    />  
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>        
