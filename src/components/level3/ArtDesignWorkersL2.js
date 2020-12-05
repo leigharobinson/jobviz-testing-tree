@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
-import {JobCatagoriesCardL1} from "./JobCatagoriesCardL1"
+// import {JobCatagoriesCardL2} from "./JobCategoriesCardL2"
 // import {PurpleDot} from "../../images/PrupleDot"
 
-export const Architecture = (props) => {
+export const ArtDesignWorkers = (props) => {
     const [jobs, setJobs] = useState([]);
-    const LevelOne = "architecture-&-engineering-occupations"
+    const LevelOne = "arts,-design,-etc"
+    const LevelTwo ="art-&-design-workers"
     // let re = new RegExp('Architecture')
     const GetJobCatagories = () => {
         return JobManager.getAll().then((jobs) => {
@@ -20,8 +21,8 @@ export const Architecture = (props) => {
 
     let LevelOneList = []
     const filterJobCatLevelONe = () => jobs.map((jobCategory) => {
-        if (jobCategory.Level1 === "Architecture & engineering occupations" && jobCategory.Level2 !== "NA" && !LevelOneList.includes(jobCategory.Level2)) {
-            LevelOneList.push(jobCategory.Level2)
+        if (jobCategory.Level2 === "Art & design workers" && jobCategory.Level3 !== "NA" && !LevelOneList.includes(jobCategory.Level3)) {
+            LevelOneList.push(jobCategory.Level3)
         }
     
 
@@ -34,7 +35,7 @@ export const Architecture = (props) => {
             <div>
                 <Title />
             </div>        
-            <h1>woot level 1 Architecture</h1>
+            <h1>woot level 2 Art</h1>
             <div className="jobviz-parent"> 
             
                 <div type="button"
@@ -49,14 +50,21 @@ export const Architecture = (props) => {
                         props.history.push("/job-catagories");
                         // console.log("you clicked me");
                 }}></div>  
+                <div type="button"
+                        className="purple-dot-background"
+                        onClick={() => {
+                        props.history.push("/job-catagories/arts,-design,-etc/");
+                        // console.log("you clicked me");
+                }}></div>  
                 <div className="jobs-parent">
                     <div className="container-cards">
                         {AlphaList.map((category) => (
-                        <JobCatagoriesCardL1
+                        <JobCatagoriesCardL2
                             key={category}
                             category={category}
                             jobs={jobs}
                             LevelOne={LevelOne}
+                            LevelTwo={LevelTwo}
                             {...props}
                         />
                         ))}

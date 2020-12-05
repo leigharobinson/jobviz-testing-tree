@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import {makeUrlPath} from "../Helper"
 
 
 
-export const JobCatagoriesCardL1 = (props) => {
-const levelOne = props.LevelOne
-let category = props.category
+export const LevelTwoCard = (props) => {
+  let levelOneUrl = props.levelOneUrl;
+  let levelTwoUrl = props.levelTwoUrl;
+  let categoryStr = props.orderedCategory;
+  let category = makeUrlPath(categoryStr);
 
- const makeUrlPath = () => {
-    category = category.replace(/\s+/g, '-').toLowerCase();
-    
-}
-makeUrlPath();
-// console.log(category)
 
   return (
     <>
@@ -21,12 +17,11 @@ makeUrlPath();
           <div type="button"
                             className="purple-dot-background-level1"
                             onClick={() => {
-                              makeUrlPath()
-                            props.history.push(`/job-catagories/${levelOne}/${category}`);
+                            props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${category}`);
                             // console.log("you clicked me");
                     }}></div>
           <div className="listed-categories">
-              {props.category}
+              {categoryStr}
           </div>
 
 
