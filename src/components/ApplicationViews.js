@@ -4,6 +4,7 @@ import {Jobs} from "./jobs/Jobs";
 import {JobCatagoriesList} from "./jobsCategories/JobCatagoriesList"
 import {LevelOneList} from "./level1/LevelOneList"
 import {LevelTwoList} from "./level2/LevelTwoList"
+import {LevelThreeList} from "./level3/LevelThreeList"
 
 const ApplicationViews = () => {
   return (
@@ -40,13 +41,15 @@ const ApplicationViews = () => {
               return <LevelTwoList levelOneUrl={props.match.params.levelOneUrl} category={props.match.params.category} {...props} />;
           }}
         />
-        {/* <Route
+
+        <Route
           exact
-          path="/job-catagories/arts,-design,-etc/art-&-design-workers/artists-&-related-workers"
+          path="/job-catagories/:levelOneUrl/:levelTwoUrl/:category"
           render={(props) => {
-              return <ArtistsRelatedWorkers {...props} />;
+              return <LevelThreeList  levelOneUrl={props.match.params.levelOneUrl}  levelTwoUrl={props.match.params.levelTwoUrl} category={props.match.params.category} {...props} />;
           }}
-        /> */}
+        />
+       
       </Switch>
     </React.Fragment>
   );

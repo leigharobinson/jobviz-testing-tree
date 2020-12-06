@@ -18,11 +18,15 @@ export const JobCatagoriesList = (props) => {
         })
     }, []);
 
+  
     //empty arry to push names of targeted level (Level1)
+  
     let levelList = []
+    // console.log(levelList)
     const filterLevelOne = () => jobs.map((jobCategory) => {
         if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
-            levelList.push(jobCategory.Level1)
+            levelList.push(jobCategory.Level1);
+        
         }
 
     })
