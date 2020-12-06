@@ -3,7 +3,7 @@ import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
-import {makeStringPath} from "../Helper"
+import {makeStringPath, removeDash} from "../Helper"
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
@@ -24,8 +24,12 @@ export const LevelOneList = (props) => {
 
     //empty arry to push names of target level (Leve2)
     let levelList = []
+    // console.log(levelList, "Here it is ONe")
+
     const filsterlevelTwo = () => jobs.map((jobCategory) => {
-        if (jobCategory.Level1 === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
+        let noDash = removeDash(jobCategory.Level1)
+        // console.log(noDash)
+        if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
             levelList.push(jobCategory.Level2)
         }
     });

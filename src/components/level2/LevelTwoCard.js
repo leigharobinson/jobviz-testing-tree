@@ -23,7 +23,7 @@ const findObj = () => {
   })
 }
 findObj();
-console.log(categoryStr);
+// console.log("THis is category", category); 
 
 if(titleStr !== categoryStr) {
   return (

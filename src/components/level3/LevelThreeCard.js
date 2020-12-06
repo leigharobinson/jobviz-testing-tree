@@ -9,8 +9,10 @@ export const LevelThreeCard = (props) => {
   let levelThreeUrl = props.levelThree;
   let categoryStr = props.orderedCategory;
   let category = makeUrlPath(categoryStr);
-    console.log(categoryStr, "level four");
-
+  // console.log(categoryStr, "level four");
+  let jobs = props.jobs
+   // LR look back at this, there must be simpler way
+ 
   return (
     <>
       <div className="jobviz-parent-level1">                           
