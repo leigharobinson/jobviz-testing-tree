@@ -1,11 +1,19 @@
 export function makeStringPath(str) {
     str = str.replace(/-+/g, " ")
-    return str.charAt(0).toUpperCase() + str.slice(1)
+    return str.charAt(0).toUpperCase() + str.slice(1);
    
 }
 export function makeUrlPath(str) {
-   return str.replace(/\s+/g, '-').toLowerCase();
+   str = str.replace(/\s+/g, '-').toLowerCase();
+   return str
 }
+
+
+
+export function removeDash(str) {
+  return str.replace(/-+/g, " ");
+}
+
 
 
   export function splitTypeArray(arr) {
