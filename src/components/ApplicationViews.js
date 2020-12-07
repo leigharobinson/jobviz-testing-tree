@@ -1,10 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
-import {Jobs} from "./jobs/Jobs";
-import {JobCatagoriesList} from "./jobsCategories/JobCatagoriesList"
+import {Jobs} from "./level0/Jobs";
 import {LevelOneList} from "./level1/LevelOneList"
 import {LevelTwoList} from "./level2/LevelTwoList"
 import {LevelThreeList} from "./level3/LevelThreeList"
+import {LevelFourList} from "./level4/LevelFourList"
 
 const ApplicationViews = () => {
   return (
@@ -23,7 +23,7 @@ const ApplicationViews = () => {
           exact
           path="/job-catagories"
           render={(props) => {
-              return <JobCatagoriesList {...props} />;
+              return <LevelOneList {...props} />;
           }}
         />
      
@@ -31,14 +31,14 @@ const ApplicationViews = () => {
          exact
           path="/job-catagories/:category"
           render={(props) => {
-              return <LevelOneList category={props.match.params.category} {...props} />;
+              return <LevelTwoList category={props.match.params.category} {...props} />;
           }}
         />
         <Route
         exact
           path="/job-catagories/:levelOneUrl/:category"
           render={(props) => {
-              return <LevelTwoList levelOneUrl={props.match.params.levelOneUrl} category={props.match.params.category} {...props} />;
+              return <LevelThreeList levelOneUrl={props.match.params.levelOneUrl} category={props.match.params.category} {...props} />;
           }}
         />
 
@@ -46,7 +46,7 @@ const ApplicationViews = () => {
           exact
           path="/job-catagories/:levelOneUrl/:levelTwoUrl/:category"
           render={(props) => {
-              return <LevelThreeList  levelOneUrl={props.match.params.levelOneUrl}  levelTwoUrl={props.match.params.levelTwoUrl} category={props.match.params.category} {...props} />;
+              return <LevelFourList  levelOneUrl={props.match.params.levelOneUrl}  levelTwoUrl={props.match.params.levelTwoUrl} category={props.match.params.category} {...props} />;
           }}
         />
        

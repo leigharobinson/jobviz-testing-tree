@@ -4,17 +4,17 @@ import {makeUrlPath} from "../Helper"
 
 
 export const LevelTwoCard = (props) => {
-  let levelOneUrl = props.levelOneUrl;
-  let levelTwoUrl = props.levelTwoUrl;
-  let categoryStr = props.orderedCategory;
-  let category = makeUrlPath(categoryStr);
-  let jobs = props.jobs
+let jobs = props.jobs
+let levelOneUrl = props.levelOneUrl;
+let categoryStr = props.orderedCategory;
+// console.log("THis is category string", categoryStr)
+let category = makeUrlPath(categoryStr);
 
-  // LR look back at this, there must be simpler way
+// LR look back at this, there must be simpler way
 let titleStr = "";
 const findObj = () => {
   jobs.filter((job)=> {   
-    if(job.Level3 === categoryStr) {
+    if(job.Level2 === categoryStr) {
       
       let emtStr = job.title;
       
@@ -23,29 +23,34 @@ const findObj = () => {
   })
 }
 findObj();
-// console.log("THis is category", category); 
+// console.log(categoryStr);
+// console.log(titleStr);
+
+// const handleCLick = () => {
+//   console.log (props.category + " was clicked")
+// }
 
 if(titleStr !== categoryStr) {
   return (
-    <>
-      <div className="jobviz-parent-level1">                           
-        
-          <div type="button"
-                            className="purple-dot-background-level1"
-                            onClick={() => {
-              
-                              props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${category}`);
+        <>
+        <div className="jobviz-parent-level1">                           
+          
+            <div type="button"
+                              className="purple-dot-background-level1"
+                              onClick={() => {
                               
-                        
-                    }}></div>
-          <div className="listed-categories">
-              {categoryStr}
-          </div>
+                                props.history.push(`/job-catagories/${levelOneUrl}/${category}`);
+                                }}></div>
+          
+            <div id={categoryStr} className="listed-categories">
+                {categoryStr}
+            </div>
 
 
-    </div>
-    </>
-  );
+      </div>
+      </>
+
+  )
 } else { 
     return (
         <>
@@ -62,7 +67,6 @@ if(titleStr !== categoryStr) {
         </div>
         </>
   );}
-  
 };
 
 
