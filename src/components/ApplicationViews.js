@@ -3,6 +3,7 @@ import React from "react";
 import {Jobs} from "./level0/Jobs";
 import {LevelOneList} from "./level1/LevelOneList"
 import {LevelTwoList} from "./level2/LevelTwoList"
+import {LevelTwoEndpointList} from "./level2/LevelTwoEndpointList"
 import {LevelThreeList} from "./level3/LevelThreeList"
 import {LevelFourList} from "./level4/LevelFourList"
 
@@ -26,7 +27,7 @@ const ApplicationViews = () => {
               return <LevelOneList {...props} />;
           }}
         />
-     
+     {/* /////////////// Level two catagories and endpoinnts /////// */}
         <Route
          exact
           path="/job-catagories/:category"
@@ -34,6 +35,14 @@ const ApplicationViews = () => {
               return <LevelTwoList category={props.match.params.category} {...props} />;
           }}
         />
+        <Route
+        exact
+          path="/job-catagories/:levelOneUrl/:category/endpoint"
+          render={(props) => {
+              return <LevelTwoEndpointList levelOneUrl={props.match.params.levelOneUrl} category={props.match.params.category} {...props} />;
+          }}
+        />
+      
         <Route
         exact
           path="/job-catagories/:levelOneUrl/:category"

@@ -11,7 +11,7 @@ export const LevelOneCard = (props) => {
 
 //URL appropriate String of Category
   let category = makeUrlPath(categoryStr);
-
+  // console.log(category)
 // LR look back at this, there must be simpler way
 let titleStr = "";
 const findObj = () => {
@@ -33,34 +33,30 @@ findObj();
 // }
 if(titleStr !== categoryStr) {
   return (
-        <>
-        <div className="jobviz-parent-level1">                           
-          
-            <div type="button"
-                              className="purple-dot-background-level1"
-                              onClick={() => {
-                              
-                                props.history.push(`/job-catagories/${category}`);
-                                }}></div>
-          
-            <div id={categoryStr} className="listed-categories">
-                {categoryStr}
+      <>
+        <div className="jobviz-parent-card">                           
+          <div className="btn-container">
+          <div type="button"
+                  className="link-btn"
+                  onClick={() => {
+                    props.history.push(`/job-catagories/${category}`);
+                    console.log(category)
+                  }}>+</div>
             </div>
-
-
-      </div>
+              <div id={categoryStr} className="listed-categories">
+                  {categoryStr}
+              </div>
+        </div>
       </>
 
   )
 } else { 
     return (
         <>
-          <div className="jobviz-parent-level1">                          
+          <div className="jobviz-parent-card">                          
             
               <div id={categoryStr} className="listed-categories">
-                <ul>
-                  <li>{categoryStr}</li>
-                </ul>
+                
                   
               </div>
 

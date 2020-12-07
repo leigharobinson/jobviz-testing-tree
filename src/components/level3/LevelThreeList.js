@@ -56,34 +56,39 @@ export const LevelThreeList = (props) => {
             <Title />
         </div>
         <div className="crumbs">
-                    <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {levelTwoString}</h6>
+                    <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {levelTwoString}</small>
         </div>  
-        <div className="jobviz-parent">    
-                <div>
+        <div className="jobviz-header">    
+                
                     <h4>{levelTwoString}</h4>
-                    <h6>Level Three that shows selection options for next level (level4)</h6>
-                </div>  
+                    <small>Level Three that shows selection options for next level (level4)</small>
+                 
         </div>  
         <div className="jobviz-parent"> 
-        <div type="button"
-                        className="purple-dot-background"
+            <div className="btn-container">
+                <div type="button"
+                        className="link-btn"
                         onClick={() => {
                         props.history.push("/");
                         // console.log("you clicked me");
-                }}></div>  
+                }}>-</div>  
+                </div>
+            <div className="btn-container">
                 <div type="button"
-                        className="purple-dot-background"
+                        className="link-btn"
                         onClick={() => {
-                        props.history.push("/job-catagories");
-                        // console.log("you clicked me");
-                }}></div> 
+                            props.history.push("/job-catagories");
+                            // console.log("you clicked me");
+                    }}>-</div>  
+                </div>
+            <div className="btn-container">
                 <div type="button"
-                        className="purple-dot-background"
+                        className="link-btn"
                         onClick={() => {
-                        props.history.push(`/job-catagories/${levelOneUrl}`);
-                        // console.log("you clicked me");
-                }}></div> 
-       
+                            props.history.push(`/job-catagories/${levelOneUrl}`);
+                            console.log("you clicked me");
+                }}>-</div> 
+            </div>
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
                         return (

@@ -51,21 +51,23 @@ export const LevelOneList = (props) => {
                 <Title />
             </div> 
             <div className="crumbs">
-                <h6><Link to={"/"}>Jobs</Link> > Job Categories</h6>
+                <small><Link to={"/"}>Jobs</Link> > Job Categories</small>
             </div>
-            <div className="jobviz-parent">    
-                <div>
+            <div className="jobviz-header" >    
+                
                     <h4>Categories List</h4>
-                    <h6>Level1 key values that shows occupational category links for Data Base Level2 key value components</h6>
-                </div>  
+                    <small>Level1 key values that shows occupational category links for Data Base Level2 key value components</small>
+                  
             </div>    
             <div className="jobviz-parent"> 
-                <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push("/");
-                        // console.log("you clicked me");
-                }}></div>  
+                <div className="btn-container">
+                    <div type="button"
+                            className="link-btn"
+                            onClick={() => {
+                            props.history.push("/");
+                            // console.log("you clicked me");
+                    }}>-</div>  
+                </div>
                 <div className="jobs-parent">
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {

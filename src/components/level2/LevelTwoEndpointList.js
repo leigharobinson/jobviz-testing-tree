@@ -6,17 +6,23 @@ import {LevelTwoCard} from "./LevelTwoCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 
-export const LevelTwoList = (props) => {
+export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
       const [levelTwoStr, setLevelTwoStr] = useState([]);
+      //endpoint
+    let endpoint = props.category
+    console.log("endpoint", endpoint)
     // the level 1 category url sting we need to pass to children
-    let levelOneUrl = props.category;
+    let levelOneUrl = props.levelOneUrl;
+    console.log("levelONe URL",levelOneUrl)
     //the level 1 category 'normal' string we need to match to make sure 
     //we only select level 2 categories that have the same level 1 category
-    let levelOneString = makeStringPath(props.category);
+    let levelOneString = makeStringPath(levelOneUrl);
+    let endpointString = makeStringPath(endpoint);
 
+    console.log(levelOneUrl)
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
             setJobs(jobs)
@@ -63,7 +69,7 @@ export const LevelTwoList = (props) => {
                     <h4>{levelOneString}</h4>                 
             </div> 
             <div className="crumbs">
-                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > {levelOneString}</small>
+                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {endpointString}</small>
                     </div>
             <div className="jobviz-parent"> 
                 <div className="btn-container">

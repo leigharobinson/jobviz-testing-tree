@@ -1,71 +1,229 @@
-.jobviz-parent {
+.jobviz-parent,
+.crumbs {
+  display: flex;
+  border: solid lightgreen 5px;
+  justify-content: center;
+  margin: 25px;
+  align-items: center;
+}
+.jobviz-header small,
+h4 {
+  display: flex;
+  /* border: solid pink 2px; */
+  flex-direction: column;
+  align-items: center;
+  /* font-size: 12px; */
+  text-align: center;
+}
+
+.jobviz-parent-card {
   display: flex;
   /* border: solid black 2px; */
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 1px;
+}
+
+p {
+  font-size: 2.5em;
+}
+.btn-container {
+  display: flex;
+  /* border: solid lightslategrey 5px; */
   justify-content: center;
   /* margin: 25px; */
   align-items: center;
 }
-/* JobCategoriesLis */
-.yellow {
-  border: solid yellow 3px;
-}
-/* LevelOneList */
-.l1-color-border {
-  border: solid blue 3px;
-}
-.jobs-parent {
+.link-btn {
   display: flex;
-  justify-content: start;
+  /* border: solid pink 2px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  padding: 0.5em;
+  margin: 0.5em;
   align-items: center;
-  /* border: solid red 5px; */
-  /* padding: 1em; */
-  width: 100%;
-  height: auto;
+  background-color: lavender;
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
 }
-.jobviz-parent-level1 {
+.link-btn:hover {
   display: flex;
   /* border: solid black 2px; */
-  justify-content: flex-start;
-  align-self: center;
-  padding-top: 1px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  padding: 0.5em;
+  margin: 0.5em;
+  align-items: center;
+  background-color: lavender;
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
 }
-.purple-dot-background {
-  width: 70px;
-  height: 70px;
-  background: url(../../images/PurpleDot.svg) no-repeat center;
-  margin: 2px;
+
+/* Trying out a triangle shape */
+/* .end-btn {
+  display: flex;
+
+  justify-content: center;
+  padding: 0.5em;
+  margin: 0.5em;
+  align-items: center;
+  width: 0;
+  height: 0;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+
+  border-bottom: 2.5rem solid lavender;
+} */
+
+.end-btn {
+  display: flex;
+
+  justify-content: center;
+  padding: 0.5em;
+  margin: 0.5em;
+  align-items: center;
+  background-color: lavender;
+
+  width: 2.5rem;
+  height: 2.5rem;
 }
-p {
-  font-size: 2.5em;
-}
-.purple-dot-background-level1 {
-  width: 10px;
-  height: 10px;
-  background: url(../../images/PurpleDot.svg) no-repeat center;
-  padding-right: 0.5rem;
-}
+
 .listed-categories {
+  /* padding-left: 0.5rem; */
   font-size: 1.5em;
 }
 
-@media screen and (max-width: 480px) {
-  .purple-dot-background {
-    width: 20px;
-    height: 20px;
-    background: url(../../images/PurpleDot.svg) no-repeat;
-    margin: 2px;
+@media screen and (max-width: 768px) {
+  .btn-container {
+    display: flex;
+    /* border: solid green 5px; */
+    justify-content: center;
+    /* margin: 25px; */
+    align-items: center;
   }
-  p {
-    font-size: 1.5em;
+  .link-btn {
+    display: flex;
+    /* border: solid pink 2px; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    padding: 0.5em;
+    margin: 0.5em;
+    align-items: center;
+    background-color: lavender;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
   }
-  .purple-dot-background-level1 {
-    width: 12px;
-    height: 12px;
-    background: url(../../images/PurpleDot.svg) no-repeat left;
-    padding-right: 0.5rem;
+  .link-btn:hover {
+    display: flex;
+    /* border: solid black 2px; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    padding: 0.5em;
+    margin: 0.5em;
+    align-items: center;
+    background-color: lavender;
+    border-radius: 100%;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .end-btn {
+    display: flex;
+    /* border: solid black 2px; */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    justify-content: center;
+    padding: 0.5em;
+    margin: 0.5em;
+    align-items: center;
+    background-color: lavender;
+    /* border-radius: 100%; */
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .listed-categories {
+    /* padding-left: 0.5rem; */
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .btn-container {
+    display: flex;
+    /* border: solid pink 1px; */
+    justify-content: center;
+
+    align-items: center;
+  }
+  .link-btn {
+    display: flex;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    padding: 0.3em;
+    margin: 0.3em;
+    align-items: center;
+    background-color: lavender;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
+  }
+  .end-btn {
+    display: flex;
+    justify-content: center;
+    padding: 0.3em;
+    margin: 0.3em;
+    align-items: center;
+    background-color: lavender;
+
+    width: 1rem;
+    height: 1rem;
   }
   .listed-categories {
+    padding-left: 0.2rem;
     font-size: 12px;
+    word-wrap: normal;
+  }
+}
+@media screen and (max-width: 375px) {
+  .btn-container {
+    display: flex;
+    /* border: solid lightslategrey 1px; */
+    justify-content: center;
+
+    align-items: center;
+  }
+  .link-btn {
+    display: flex;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    padding: 0.3em;
+    margin: 0.3em;
+    align-items: center;
+    background-color: lavender;
+    border-radius: 100%;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .end-btn {
+    display: flex;
+
+    justify-content: center;
+    padding: 0.3em;
+    margin: 0.3em;
+    align-items: center;
+    background-color: lavender;
+
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .listed-categories {
+    padding-left: 0.2rem;
+    font-size: 10px;
     word-wrap: normal;
   }
 }

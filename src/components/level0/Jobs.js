@@ -8,17 +8,17 @@ export const Jobs = (props) => (
             <Title />
         </div>
         <div className="jobviz-parent"> 
-            <div className="jobs-parent">
+            
                 <div type="button"
-                    className="purple-dot-background"
+                    className="link-btn"
                     onClick={() => {
                     props.history.push("/job-catagories");
                     // console.log("you clicked me");
-            }}></div>
+            }}> + </div>
             
     
                 <p>Jobs</p>
-            </div>
+            
         
         
         </div>

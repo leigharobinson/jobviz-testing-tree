@@ -23,6 +23,10 @@ const findObj = () => {
   })
 }
 findObj();
+
+const bkColorChange = () => {
+  document.body.style.backgroundColor = "#282c34"
+}
 // console.log(categoryStr);
 // console.log(titleStr);
 
@@ -33,15 +37,14 @@ findObj();
 if(titleStr !== categoryStr) {
   return (
         <>
-        <div className="jobviz-parent-level1">                           
-          
+        <div className="jobviz-parent-card">                           
+          <div className="btn-container">
             <div type="button"
-                              className="purple-dot-background-level1"
-                              onClick={() => {
-                              
-                                props.history.push(`/job-catagories/${levelOneUrl}/${category}`);
-                                }}></div>
-          
+                  className="link-btn"
+                  onClick={() => {
+                    props.history.push(`/job-catagories/${levelOneUrl}/${category}`);
+                  }}>+</div>
+          </div>
             <div id={categoryStr} className="listed-categories">
                 {categoryStr}
             </div>
@@ -54,17 +57,21 @@ if(titleStr !== categoryStr) {
 } else { 
     return (
         <>
-          <div className="jobviz-parent-level1">                          
-            
-              <div id={categoryStr} className="listed-categories">
-                <ul>
-                  <li>{categoryStr}</li>
-                </ul>
-                  
-              </div>
+          <div className="jobviz-parent-card">
+            <div className="btn-container">                        
+              <div type="button" className="end-btn" onClick={() => {
+                   
+                    props.history.push(`/job-catagories/${levelOneUrl}/${category}/endpoint`);
+                  }}>o</div>
+            </div>
+            <div id={categoryStr} className="listed-categories">
+                    {categoryStr}
+            </div>
+          </div>
+              
 
 
-        </div>
+        
         </>
   );}
 };

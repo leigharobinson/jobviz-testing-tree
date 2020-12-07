@@ -15,23 +15,14 @@ export const LevelFourCard = (props) => {
  
   return (
     <>
-      <div className="jobviz-parent-level1">                           
-        
-          {/* <div type="button"
-                            className="purple-dot-background-level1"
-                            onClick={() => {
-                            
-                            console.log("you clicked me", category);
-                    }}></div> */}
-          <div className="listed-categories">
-            <ul>
-                <li>{categoryStr}</li>
-            </ul>
-              
+       <div className="jobviz-parent-card">
+            <div className="btn-container">                        
+              <div type="button" className="end-btn"></div>
+            </div>
+            <div id={categoryStr} className="listed-categories" >
+                    {categoryStr}
+            </div>
           </div>
-
-
-    </div>
     </>
   );
 };

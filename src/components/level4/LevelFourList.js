@@ -63,40 +63,49 @@ export const LevelFourList = (props) => {
         <div>
             <Title />
         </div>
-        <div className="jobviz-parent">    
+
             <div className="crumbs">
-                        <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > {levelThreeString}</h6>
-            </div>       
+                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > {levelThreeString}</small>
+           
         </div>
-        <div>
+        <div className="jobviz-header">
                     <h4>{levelThreeString}</h4>
-                    <h6>Level Four that shows endpoint selection options for level (level4)</h6>
+                    <small>Level Four that shows endpoint selection options for level (level4)</small>
                 </div>    
         <div className="jobviz-parent"> 
-        <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push("/");
-                        // console.log("you clicked me");
-                }}></div>  
+            <div className="btn-container">
+                    <div type="button"
+                            className="link-btn"
+                            onClick={() => {
+                            props.history.push("/");
+                            // console.log("you clicked me");
+                    }}>-</div>  
+                    </div>
+                <div className="btn-container">
+                    <div type="button"
+                            className="link-btn"
+                            onClick={() => {
+                                props.history.push("/job-catagories");
+                                // console.log("you clicked me");
+                        }}>-</div>  
+                    </div>
+                <div className="btn-container">
+                    <div type="button"
+                            className="link-btn"
+                            onClick={() => {
+                                props.history.push(`/job-catagories/${levelOneUrl}`);
+                                console.log("you clicked me");
+                    }}>-</div> 
+                </div>
+                <div className="btn-container">
                 <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push("/job-catagories");
-                        // console.log("you clicked me");
-                }}></div> 
-                <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push(`/job-catagories/${levelOneUrl}`);
-                        // console.log("you clicked me");
-                }}></div>
-                 <div type="button"
-                        className="purple-dot-background"
+                        className="link-btn"
                         onClick={() => {
                         props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}`);
                         // console.log("you clicked me");
-                }}></div>  
+                }}>-</div>  
+                </div>
+                 
        
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
