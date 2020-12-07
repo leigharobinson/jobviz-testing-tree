@@ -3,102 +3,90 @@ import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
-import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-      const [levelTwoStr, setLevelTwoStr] = useState([]);
-    // the level 1 category url sting we need to pass to children
-    let levelOneUrl = props.category;
-    //the level 1 category 'normal' string we need to match to make sure 
-    //we only select level 2 categories that have the same level 1 category
-    let levelOneString = makeStringPath(props.category);
+    const [levelOneStr, setLevelOneStr] = useState([]);
 
+   //set job obj from GET call to state
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
             setJobs(jobs)
         })
     }, []);
 
-    //empty arry to push names of target level (Leve2)
+  
+    //empty arry to push names of targeted level (Level1)
+  
     let levelList = []
-    // console.log(levelList, "Here it is ONe")
-
-    const filsterlevelTwo = () => jobs.map((jobCategory) => {
-        let noDash = removeDash(jobCategory.Level1)
-        // console.log(noDash)
-        if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
-            levelList.push(jobCategory.Level2)
+    // console.log(levelList)
+    const filterLevelOne = () => jobs.map((jobCategory) => {
+        if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
+            levelList.push(jobCategory.Level1);
+        
         }
-    });
 
-   //call filter
-    filsterlevelTwo(); 
+    })
+    //call filter
+    filterLevelOne()
     //alphabitize sorted list to use when mapping array to DOM  
     const alphaList = levelList.sort()
-    // console.log("LevelList", LevelOneList)
 
 
-     //This get's the id of whatever category was clicked
-     const handleClick = (e) => {
+
+    //This get's the id of whatever category was clicked
+    const handleClick = (e) => {
         e.preventDefault();
         // console.log(e.target.id);
-        setLevelTwoStr(e.target.id)
+        setLevelOneStr(e.target.id)
         }
-        //  console.log(levelTwoStr)
-
+        //  console.log(levelOneStr)
 
     return (
         <>
             <div>
                 <Title />
-            </div>        
-            <div className="jobviz-parent">    
-                <div className="crumbs">
-                    <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > {levelOneString}</h6>
-                </div>  
             </div> 
+            <div className="crumbs">
+                <h6><Link to={"/"}>Jobs</Link> > Job Categories</h6>
+            </div>
+            <div className="jobviz-parent">    
+                <div>
+                    <h4>Categories List</h4>
+                    <h6>Level1 key values that shows occupational category links for Data Base Level2 key value components</h6>
+                </div>  
+            </div>    
             <div className="jobviz-parent"> 
-            
                 <div type="button"
                         className="purple-dot-background"
                         onClick={() => {
                         props.history.push("/");
                         // console.log("you clicked me");
                 }}></div>  
-                <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push("/job-catagories");
-                        // console.log("you clicked me");
-                }}></div>  
                 <div className="jobs-parent">
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
-                        return (
-                            <div key={orderedCategory} className="" onClick={handleClick}> 
-                                <LevelOneCard
-                                key={orderedCategory}
-                                orderedCategory={orderedCategory}
-                                jobs={jobs}
-                                levelOneUrl={levelOneUrl}
-                                {...props}
-                                />
-                            </div>
-                        )
-
+                            return (
+                                
+                                <div key={orderedCategory} className="" onClick={handleClick}>
+                                    <LevelOneCard
+                                        
+                                        id={orderedCategory.id}
+                                        key={orderedCategory}
+                                        orderedCategory={orderedCategory}
+                                        jobs={jobs}
+                                        {...props}
+                                    />  
+                                </div>
+                                
+                            )
                         })}
                     </div>
                 </div>
             </div>        
        </> 
     );
-
-   
-   
-}
-
-
+};

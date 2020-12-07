@@ -10,16 +10,12 @@ export const LevelTwoList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-    const [levelThreeStr, setLevelThreeStr] = useState([]);
+      const [levelTwoStr, setLevelTwoStr] = useState([]);
     // the level 1 category url sting we need to pass to children
-    const levelOneUrl = props.levelOneUrl;
-    // the level 2 category url sting we need to pass to children
-    const levelTwoUrl = props.category;
-       //we only select level 2 categories that have the same level 1 category
-    let levelOneString = makeStringPath(props.levelOneUrl);
-     //the level 2 category 'normal' string we need to match to make sure 
-    //we only select level 3 categories that have the same level 1 category
-    let levelTwoString = makeStringPath(props.category);
+    let levelOneUrl = props.category;
+    //the level 1 category 'normal' string we need to match to make sure 
+    //we only select level 2 categories that have the same level 1 category
+    let levelOneString = makeStringPath(props.category);
 
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
@@ -29,43 +25,52 @@ export const LevelTwoList = (props) => {
 
     //empty arry to push names of target level (Leve2)
     let levelList = []
-//    console.log(levelList, "Here it is")
-    const filsterlevelThree = () => jobs.map((jobCategory) => {
-        if (removeDash(jobCategory.Level2) === levelTwoString && jobCategory.Level3 !== "NA" && !levelList.includes(jobCategory.Level3)) {
-            levelList.push(jobCategory.Level3)
+    // console.log(levelList, "Here it is ONe")
+
+    const filsterlevelTwo = () => jobs.map((jobCategory) => {
+        let noDash = removeDash(jobCategory.Level1)
+        // console.log(noDash)
+        if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
+            levelList.push(jobCategory.Level2)
         }
     });
 
-    //call filter
-    filsterlevelThree();  
-     //alphabitize sorted list to use when mapping array to DOM  
-    const alphaList = levelList.sort();
+   //call filter
+    filsterlevelTwo(); 
+    //alphabitize sorted list to use when mapping array to DOM  
+    const alphaList = levelList.sort()
     // console.log("LevelList", LevelOneList)
+
 
      //This get's the id of whatever category was clicked
      const handleClick = (e) => {
         e.preventDefault();
         // console.log(e.target.id);
-        setLevelThreeStr(e.target.id)
+        setLevelTwoStr(e.target.id)
         }
         //  console.log(levelTwoStr)
 
-   return (
+
+    return (
         <>
-        <div>
-            <Title />
-        </div>
-        <div className="crumbs">
-                    <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {levelTwoString}</h6>
-        </div>  
-        <div className="jobviz-parent">    
+            <div>
+                <Title />
+            </div>        
+            <div className="jobviz-parent">    
+                <div className="crumbs">
+                    <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > {levelOneString}</h6>
+                </div>
+                
+            </div> 
+            <div className="jobviz-parent">    
                 <div>
-                <h4>{levelTwoString}</h4>
-                <h6>Level Two that shows selection options for next level (level3)</h6>
+                    <h4>{levelOneString}</h4>
+                    <h6>Level2 key value that shows occupational category links for Data Base Level3 key value components</h6>
                 </div>  
-            </div>  
-        <div className="jobviz-parent"> 
-        <div type="button"
+            </div> 
+            <div className="jobviz-parent"> 
+            
+                <div type="button"
                         className="purple-dot-background"
                         onClick={() => {
                         props.history.push("/");
@@ -76,25 +81,18 @@ export const LevelTwoList = (props) => {
                         onClick={() => {
                         props.history.push("/job-catagories");
                         // console.log("you clicked me");
-                }}></div> 
-                <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push(`/job-catagories/${levelOneUrl}`);
-                        // console.log("you clicked me");
-                }}></div> 
-       
+                }}></div>  
+                <div className="jobs-parent">
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
                         return (
-                            <div key={orderedCategory} className="l2-color-border" onClick={handleClick}> 
+                            <div key={orderedCategory} className="" onClick={handleClick}> 
                                 <LevelTwoCard
-                                    key={orderedCategory}
-                                    orderedCategory={orderedCategory}
-                                    jobs={jobs}
-                                    levelOneUrl={levelOneUrl}
-                                    levelTwoUrl={levelTwoUrl}
-                                    {...props}
+                                key={orderedCategory}
+                                orderedCategory={orderedCategory}
+                                jobs={jobs}
+                                levelOneUrl={levelOneUrl}
+                                {...props}
                                 />
                             </div>
                         )
@@ -102,12 +100,12 @@ export const LevelTwoList = (props) => {
                         })}
                     </div>
                 </div>
-            
-    
-         
-        
-        
-        
-    </>
-)
+            </div>        
+       </> 
+    );
+
+   
+   
 }
+
+
