@@ -4,6 +4,7 @@ import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelThreeCard} from "./LevelThreeCard"
 import {makeStringPath, removeDash} from "../Helper"
+import { Link } from "react-router-dom";
 
 export const LevelThreeList = (props) => {
     //All the objects in jobs array
@@ -17,6 +18,10 @@ export const LevelThreeList = (props) => {
     // the level 3 category url sting we need to pass to children
     const levelThreeUrl = props.category;
     
+    let levelOneString = makeStringPath(props.levelOneUrl);
+    //the level 2 category 'normal' string we need to match to make sure 
+   //we only select level 3 categories that have the same level 1 category
+   let levelTwoString = makeStringPath(props.levelTwoUrl);
     //the level 2 category 'normal' string we need to match to make sure 
     //we only select level 4 categories that have the same level 1 category
     let levelThreeString = makeStringPath(props.category);
@@ -59,10 +64,10 @@ export const LevelThreeList = (props) => {
             <Title />
         </div>
         <div className="jobviz-parent">    
-                <div>
-                    <h4>Level Four</h4>
-                </div>  
-            </div>  
+            <div className="crumbs">
+                        <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > {levelThreeString}</h6>
+            </div>       
+        </div>  
         <div className="jobviz-parent"> 
         <div type="button"
                         className="purple-dot-background"

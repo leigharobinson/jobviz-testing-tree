@@ -4,6 +4,7 @@ import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
 import {makeStringPath, removeDash} from "../Helper"
+import { Link } from "react-router-dom";
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
@@ -56,8 +57,8 @@ export const LevelOneList = (props) => {
                 <Title />
             </div>        
             <div className="jobviz-parent">    
-                <div>
-                    <h4>Level Two</h4>
+                <div className="crumbs">
+                    <h6><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > {levelOneString}</h6>
                 </div>  
             </div> 
             <div className="jobviz-parent"> 
@@ -96,19 +97,7 @@ export const LevelOneList = (props) => {
        </> 
     );
 
-    return (
-        <>
-
-        <div className="jobviz-parent"> 
-            
-            <h1>A Test to see if this component is hidden or shown</h1>
-            <h3>{levelOneString}</h3>
-        </div>
-        
-    </>
-
-
-    )
+   
    
 }
 

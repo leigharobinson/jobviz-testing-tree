@@ -3,7 +3,7 @@ import JobManager from "../../modules/JobManager"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {JobCatagoriesCard} from "./JobCatagoriesCard"
-
+import { Link } from "react-router-dom";
 
 export const JobCatagoriesList = (props) => {
     //All the objects in jobs array
@@ -50,6 +50,9 @@ export const JobCatagoriesList = (props) => {
             <div>
                 <Title />
             </div> 
+            <div className="crumbs">
+                <h6><Link to={"/"}>Jobs</Link> > Job Categories</h6>
+            </div>
             <div className="jobviz-parent">    
                 <div>
                     <h4>Job Categories List</h4>
