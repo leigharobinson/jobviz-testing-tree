@@ -12,7 +12,31 @@ export const LevelOneList = (props) => {
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
+    const [jobObj, setJobObj] = useState({
+    id: 0,
+    title: "",
+    Hierarchy: "",
+    OccupationType: "",
+    Employment2016: 0,
+    Employment2026: 0,
+    ChgEmploy2016to26Num: 0,
+    ChgEmploy2016to26Perc: 0,
+    PercentSelfEmployed2016: 0,
+    OccupationalOpenings2016to2026AnnualAverage: 0,
+    MedianAnnualWage2017: "",
+    TypicalEducationNeededForEntr: "",
+    WorkExperienceInARelatedOccupation: "",
+    TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: "",
+    ttl: "",
+    Level0: "",
+    Level4: "",
+    Level3: "",
+    Level2: "",
+    Level1: "",
+    pathString: "",
+    Def: "",
 
+    })
 
    //set job obj from GET call to state
     useEffect(() => {
@@ -39,24 +63,43 @@ export const LevelOneList = (props) => {
     const alphaList = levelList.sort()
 
 
-
+    //OBJECT 
     //This get's the id of whatever category was clicked
-    const handleClick = (e) => {
-        e.preventDefault();
-        console.log(e.target.id);
-        setJobName(e.target.id)
-        }
+    //THis is the Functionality to get object for Table
+    useEffect(() => {
+        getClickedJobObject();
+        }, )
+            
+    const getClickedJobObject = () => {
+        const arrayHold = [];
+        jobs.some(function (job) {
+            arrayHold.push(job.title === jobName)  
+            })
+
+        // console.log(arrayHold);
+        if (arrayHold.includes(true)) {
+             // console.log("Array Hold had one true value")
+            jobs.filter((jobObj) => {
+                if(jobName === jobObj.title){
+                    setJobObj(jobObj)
+                }
+            })
+        } else{
+            setJobObj("")
+        };     
+    };
+
+        
+        ///THis is just a test run for search bar choices
+        ///is this where I should pull all titles?
+    //Search Functionality ???????
+        let jobTitleList =[]
+        const getAllJobNames = () => jobs.filter((job) => {
+                jobTitleList.push(job.title)
+            })
     
-    ///THis is just a test run for search bar choices
-    ///is this where I should pull all titles?
-
-    let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
-            jobTitleList.push(job.title)
-        })
-
-    getAllJobNames();
-   
+        getAllJobNames();
+       
 
     return (
         <>
@@ -86,10 +129,10 @@ export const LevelOneList = (props) => {
                 </div>
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory, index) => {
                             return (
-                                
-                                <div key={orderedCategory} className="" onClick={handleClick}>
+                                <>
+                                <div key={orderedCategory} onClick={() =>setJobName(orderedCategory)}  className="" >
                                     <LevelOneCard
                                         
                                         id={orderedCategory.id}
@@ -99,15 +142,15 @@ export const LevelOneList = (props) => {
                                         {...props}
                                     />  
                                 </div>
-                                
+                                </>
                             )
                         })}
                     </div>
                 </div>
-                <div>
-                    <Table jobName={jobName} {...props} />
-                </div>
             </div>        
+            <div className="jobviz-parent">
+                <Table jobObj={jobObj} {...props} />
+            </div>
        </> 
     );
 };

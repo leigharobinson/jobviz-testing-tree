@@ -1,74 +1,64 @@
-import React, { useEffect, useState} from "react";
-import JobManager from "../../modules/JobManager"
+import React from "react";
+// import JobManager from "../../modules/JobManager"
 import "../styling/Style.css"
-import {makeUrlPath} from "../Helper"
+// import {makeUrlPath} from "../Helper"
 
 export const Table = (props) => {
-  const jobName = props.jobName
-  console.log(jobName)
-  // const [isLoading, setIsLoading] = useState(true);
-  const [jobData, setJobData] = useState({
-    id: 0,
-    title: "",
-    Hierarchy: "",
-    OccupationType: "",
-    Employment2016: 0,
-    Employment2026: 0,
-    ChgEmploy2016to26Num: 0,
-    ChgEmploy2016to26Perc: 0,
-    PercentSelfEmployed2016: 0,
-    OccupationalOpenings2016to2026AnnualAverage: 0,
-    MedianAnnualWage2017: "",
-    TypicalEducationNeededForEntr: "",
-    WorkExperienceInARelatedOccupation: "",
-    TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: "",
-    ttl: "",
-    Level0: "",
-    Level4: "",
-    Level3: "",
-    Level2: "",
-    Level1: "",
-    pathString: "",
-    Def: "",
-  });
-  
-  
-  // useEffect(() => {
-  //     JobManager.getJob(jobName).then((job) => {
-  //       setJobData({
-  //         id: job.id,
-  //         title: job.title,
-  //         Hierarchy: job.Hierarchy,
-  //         OccupationType: job.OccupationType,
-  //         Employment2016: job.Employment2016,
-  //         Employment2026: job.Employment2026,
-  //         ChgEmploy2016to26Num: job.ChgEmploy2016to26Num,
-  //         ChgEmploy2016to26Perc: job.ChgEmploy2016to26Perc,
-  //         PercentSelfEmployed2016: job.PercentSelfEmployed2016,
-  //         OccupationalOpenings2016to2026AnnualAverage: job.TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation,
-  //         MedianAnnualWage2017: job.MedianAnnualWage2017,
-  //         TypicalEducationNeededForEntr: job.TypicalEducationNeededForEntr,
-  //         WorkExperienceInARelatedOccupation: job.WorkExperienceInARelatedOccupation,
-  //         TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: job.TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation,
-  //         ttl: job.ttl,
-  //         Level0: job.Level0,
-  //         Level4: job.Level1,
-  //         Level3: job.Level2,
-  //         Level2: job.Level3,
-  //         Level1: job.Level4,
-  //         pathString: job.pathString,
-  //         Def: job.Def,
-  
-  //       })
-        
-  //     }, [jobName]
-  //     )});
+ let jobObj = props.jobObj
 
-      return (
-        <div>
-          <h1>{jobData.Def}</h1>
+ if (jobObj === undefined) {
+   return(
+      <h1>I'm a Blank Table</h1>
+   )
+ } else {
+
+  return (
+    <>
+      <div className="table-parent">
+        <div className="table-top">
+          <div className="table-title">
+                <h4>Job id: {jobObj.id}</h4>
+                <h4>Job: {jobObj.title} </h4>
+
+             
+                <h6>Definition: {jobObj.Def}</h6>
+              
+              
+          </div>
         </div>
-      )
+        <div className="table-mid">
+          <div className="table-child">
+            <h6>Median 2017 Annual Wage:</h6>
+            <small>{jobObj.MedianAnnualWage2017}</small>
+          </div>
+          <div className="table-child">
+            <h6>Education Needed:</h6>
+            <small>{jobObj.TypicalEducationNeededForEntry}</small>
+          </div>
+          <div className="table-child">
+            <h6>Work Experience In a Related Occupation Desired:</h6>
+            <small>{jobObj.TypicalEducationNeededForEntry}</small>
+          </div>
+          <div className="table-child">
+            <h6>On-the-job Training:</h6>
+            <small>{jobObj.TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation}</small>
+          </div>
+          <div className="table-child">
+            <h6>2016 Employement:</h6>
+            <small>{jobObj.Employment2016}</small>
+          </div>
+          <div className="table-child">
+            <h6>2026 Employement:</h6>
+            <small>{jobObj.Employment2026}</small>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+
+ }
+        
+      
  }
 
  

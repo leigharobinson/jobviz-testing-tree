@@ -5,6 +5,7 @@ import "../styling/Style.css"
 import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
+import {Table} from "../table/Table"
 
 export const LevelFourList = (props) => {
     //All the objects in jobs array
@@ -126,6 +127,9 @@ export const LevelFourList = (props) => {
                         })}
                     </div>
                 </div>
+                <div className="jobviz-parent">
+                    <Table jobName={jobName} {...props} />
+                </div>   
             
     
          

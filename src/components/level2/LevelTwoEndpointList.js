@@ -5,12 +5,14 @@ import "../styling/Style.css"
 import {LevelTwoCard} from "./LevelTwoCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
+import {Table} from "../table/Table"
 
 export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
+    
     
       //endpoint
     let endpoint = props.category
@@ -65,13 +67,12 @@ export const LevelTwoEndpointList = (props) => {
             </div>        
             
                 
-            <div className="jobviz-header">    
-                
-                    <h4>{levelOneString}</h4>                 
+            <div className="jobviz-header">       
+                <h4>{levelOneString}</h4>                 
             </div> 
             <div className="crumbs">
-                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {endpointString}</small>
-                    </div>
+                <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {endpointString}</small>
+            </div>
             <div className="jobviz-parent"> 
                 <div className="btn-container">
                     <div type="button"
@@ -107,6 +108,9 @@ export const LevelTwoEndpointList = (props) => {
                         })}
                     </div>
                 </div>
+            </div>
+            <div className="jobviz-parent">
+                <Table jobName={jobName} {...props} />
             </div>        
        </> 
     );

@@ -23,7 +23,7 @@ const handleChange = (e) => {
                 onChange={(e) => handleChange(e.target.value)}
                 />
             <div className="searchIcon">
-                    <input  type="submit" value="" class="search-icon" />
+                    <input  type="submit" value="" className="search-icon" />
                 </div>
             </div>
             <div id="float-options">

@@ -5,6 +5,7 @@ import "../styling/Style.css"
 import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
+import {Table} from "../table/Table"
 
 export const LevelFourEndpointList = (props) => {
     //All the objects in jobs array
@@ -12,15 +13,15 @@ export const LevelFourEndpointList = (props) => {
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
     
-    //endpoint
-    let endpoint = props.category
+    //endpoint category
+    let category = props.category
     // the level 1 category url string we need to pass to children
     const levelOneUrl = props.levelOneUrl;
     // the level 2 category url string we need to pass to children
     const levelTwoUrl = props.levelTwoUrl;
     // the level 3 category url string we need to pass to children
     const levelThreeUrl = props.levelThreeUrl;
-    console.log(levelThreeUrl)
+   
     let levelOneString = makeStringPath(levelOneUrl);
     //the level 2 category 'normal' string we need to match to make sure 
    //we only select level 3 categories that have the same level 1 category
@@ -29,7 +30,7 @@ export const LevelFourEndpointList = (props) => {
     //we only select level 4 categories that have the same level 1 category
     let levelThreeString = makeStringPath(levelThreeUrl);
     
-    let endpointString = makeStringPath(endpoint);
+    let categoryString = makeStringPath(category);
 
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
@@ -68,10 +69,10 @@ export const LevelFourEndpointList = (props) => {
             <Title />
         </div>
         <div className="jobviz-header">
-            <h4>{endpointString}</h4>
+            <h4>{categoryString}</h4>
         </div> 
         <div className="crumbs">
-            <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl/levelThreeUrl}`}>{levelThreeString}</Link> > {endpointString}</small>
+            <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}`}>{levelThreeString}</Link> > {categoryString}</small>
            
         </div>
            
@@ -128,6 +129,9 @@ export const LevelFourEndpointList = (props) => {
 
                         })}
                     </div>
+                </div>
+                <div className="jobviz-parent">
+                    <Table jobName={jobName} {...props} />
                 </div>
             
     

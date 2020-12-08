@@ -5,6 +5,7 @@ import "../styling/Style.css"
 import {LevelThreeCard} from "./LevelThreeCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
+import {Table} from "../table/Table"
 
 export const LevelThreeEndpointList = (props) => {
     //All the objects in jobs array
@@ -113,7 +114,9 @@ export const LevelThreeEndpointList = (props) => {
                         })}
                     </div>
                 </div>
-            
+                <div className="jobviz-parent">
+                    <Table jobName={jobName} {...props} />
+                </div>
     
          
         
