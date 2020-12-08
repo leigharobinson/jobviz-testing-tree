@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {makeUrlPath} from "../Helper"
 
 
@@ -6,32 +6,26 @@ import {makeUrlPath} from "../Helper"
 export const LevelFourCard = (props) => {
   let levelOneUrl = props.levelOneUrl;
   let levelTwoUrl = props.levelTwoUrl;
-  let levelThreeUrl = props.levelThree;
+  let levelThreeUrl = props.levelThreeUrl;
   let categoryStr = props.orderedCategory;
   let category = makeUrlPath(categoryStr);
   // console.log(categoryStr, "level four");
-  let jobs = props.jobs
+  // let jobs = props.jobs
    // LR look back at this, there must be simpler way
  
   return (
     <>
-      <div className="jobviz-parent-level1">                           
-        
-          {/* <div type="button"
-                            className="purple-dot-background-level1"
-                            onClick={() => {
-                            
-                            console.log("you clicked me", category);
-                    }}></div> */}
-          <div className="listed-categories">
-            <ul>
-                <li>{categoryStr}</li>
-            </ul>
-              
+       <div className="jobviz-parent-card">
+            <div className="btn-container">                        
+            <div type="button" className="end-btn" onClick={() => {
+                   
+                   props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}/endpoint/${category}`);
+                 }}>🥨</div>
+            </div>
+            <div id={categoryStr} className="listed-categories">
+                    {categoryStr}
+            </div>
           </div>
-
-
-    </div>
     </>
   );
 };

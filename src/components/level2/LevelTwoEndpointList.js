@@ -7,43 +7,25 @@ import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
 
-export const LevelTwoList = (props) => {
+export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
-    const [jobObj, setJobObj] = useState({
-        id: 0,
-        title: "",
-        Hierarchy: "",
-        OccupationType: "",
-        Employment2016: 0,
-        Employment2026: 0,
-        ChgEmploy2016to26Num: 0,
-        ChgEmploy2016to26Perc: 0,
-        PercentSelfEmployed2016: 0,
-        OccupationalOpenings2016to2026AnnualAverage: 0,
-        MedianAnnualWage2017: "",
-        TypicalEducationNeededForEntr: "",
-        WorkExperienceInARelatedOccupation: "",
-        TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: "",
-        ttl: "",
-        Level0: "",
-        Level4: "",
-        Level3: "",
-        Level2: "",
-        Level1: "",
-        pathString: "",
-        Def: "",
     
-        })
-   
+    
+      //endpoint
+    let endpoint = props.category
+    // console.log("endpoint", endpoint)
     // the level 1 category url sting we need to pass to children
-    let levelOneUrl = props.category;
+    let levelOneUrl = props.levelOneUrl;
+    // console.log("levelONe URL",levelOneUrl)
     //the level 1 category 'normal' string we need to match to make sure 
     //we only select level 2 categories that have the same level 1 category
-    let levelOneString = makeStringPath(props.category);
+    let levelOneString = makeStringPath(levelOneUrl);
+    let endpointString = makeStringPath(endpoint);
 
+   
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
             setJobs(jobs)
@@ -54,7 +36,7 @@ export const LevelTwoList = (props) => {
     let levelList = []
     // console.log(levelList, "Here it is ONe")
 
-    const filsterlevelTwo = () => jobs.filter((jobCategory) => {
+    const filterlevelTwo = () => jobs.filter((jobCategory) => {
         let noDash = removeDash(jobCategory.Level1)
         // console.log(noDash)
         if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
@@ -63,39 +45,19 @@ export const LevelTwoList = (props) => {
     });
 
    //call filter
-    filsterlevelTwo(); 
+    filterlevelTwo(); 
     //alphabitize sorted list to use when mapping array to DOM  
     const alphaList = levelList.sort()
     // console.log("LevelList", LevelOneList)
 
 
-    //OBJECT 
-    //This get's the id of whatever category was clicked
-    //THis is the Functionality to get object for Table
-    useEffect(() => {
-        getClickedJobObject();
-        }, )
-            
-    const getClickedJobObject = () => {
-        const arrayHold = [];
-        jobs.some(function (job) {
-            arrayHold.push(job.title === jobName)  
-            })
-
-        // console.log(arrayHold);
-        if (arrayHold.includes(true)) {
-             // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
-                if(jobName === jobObj.title){
-                    setJobObj(jobObj)
-                }
-            })
-        } else{
-            setJobObj("")
-        };     
-    };
-
-   
+     //This get's the id of whatever category was clicked
+     const handleClick = (e) => {
+        e.preventDefault();
+        // console.log(e.target.id);
+        setJobName(e.target.id)
+        }
+        //  console.log(levelTwoStr)
 
 
     return (
@@ -105,13 +67,12 @@ export const LevelTwoList = (props) => {
             </div>        
             
                 
-            <div className="jobviz-header">    
-                
-                    <h4>{levelOneString}</h4>                 
+            <div className="jobviz-header">       
+                <h4>{levelOneString}</h4>                 
             </div> 
             <div className="crumbs">
-                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > {levelOneString}</small>
-                    </div>
+                <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > {endpointString}</small>
+            </div>
             <div className="jobviz-parent"> 
                 <div className="btn-container">
                     <div type="button"
@@ -133,7 +94,7 @@ export const LevelTwoList = (props) => {
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
                         return (
-                            <div key={orderedCategory} className="" onClick={() =>setJobName(orderedCategory)}> 
+                            <div key={orderedCategory} className="" onClick={handleClick}> 
                                 <LevelTwoCard
                                 key={orderedCategory}
                                 orderedCategory={orderedCategory}
@@ -149,7 +110,7 @@ export const LevelTwoList = (props) => {
                 </div>
             </div>
             <div className="jobviz-parent">
-                <Table jobObj={jobObj} {...props} />
+                <Table jobName={jobName} {...props} />
             </div>        
        </> 
     );

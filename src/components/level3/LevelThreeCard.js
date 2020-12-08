@@ -28,16 +28,17 @@ findObj();
 if(titleStr !== categoryStr) {
   return (
     <>
-      <div className="jobviz-parent-level1">                           
-        
+      <div className="jobviz-parent-card">                           
+      <div className="btn-container">
           <div type="button"
-                            className="purple-dot-background-level1"
+                            className="link-btn"
                             onClick={() => {
               
                               props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${category}`);
                               
                         
-                    }}></div>
+                    }}>+</div>
+          </div>
           <div className="listed-categories">
               {categoryStr}
           </div>
@@ -49,17 +50,20 @@ if(titleStr !== categoryStr) {
 } else { 
     return (
         <>
-          <div className="jobviz-parent-level1">                          
-            
-              <div id={categoryStr} className="listed-categories">
-                <ul>
-                  <li>{categoryStr}</li>
-                </ul>
-                  
-              </div>
+          <div className="jobviz-parent-card">
+            <div className="btn-container">                        
+            <div type="button" className="end-btn" onClick={() => {
+                   
+                   props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/endpoint/${category}`);
+                 }}>🥨</div>
+            </div>
+            <div id={categoryStr} className="listed-categories">
+                    {categoryStr}
+            </div>
+          </div>
 
 
-        </div>
+  
         </>
   );}
   

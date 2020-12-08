@@ -4,12 +4,39 @@ import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
 import { Link } from "react-router-dom";
+import  {Search}  from "../search/Search"
+import {Table} from "../table/Table"
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-    const [levelOneStr, setLevelOneStr] = useState([]);
+    const [jobName, setJobName] = useState([]);
+    const [jobObj, setJobObj] = useState({
+    id: 0,
+    title: "",
+    Hierarchy: "",
+    OccupationType: "",
+    Employment2016: 0,
+    Employment2026: 0,
+    ChgEmploy2016to26Num: 0,
+    ChgEmploy2016to26Perc: 0,
+    PercentSelfEmployed2016: 0,
+    OccupationalOpenings2016to2026AnnualAverage: 0,
+    MedianAnnualWage2017: "",
+    TypicalEducationNeededForEntr: "",
+    WorkExperienceInARelatedOccupation: "",
+    TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: "",
+    ttl: "",
+    Level0: "",
+    Level4: "",
+    Level3: "",
+    Level2: "",
+    Level1: "",
+    pathString: "",
+    Def: "",
+
+    })
 
    //set job obj from GET call to state
     useEffect(() => {
@@ -23,12 +50,12 @@ export const LevelOneList = (props) => {
   
     let levelList = []
     // console.log(levelList)
-    const filterLevelOne = () => jobs.map((jobCategory) => {
+    const filterLevelOne = () => jobs.filter((jobCategory) => {
         if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
             levelList.push(jobCategory.Level1);
         
         }
-
+       
     })
     //call filter
     filterLevelOne()
@@ -36,42 +63,76 @@ export const LevelOneList = (props) => {
     const alphaList = levelList.sort()
 
 
-
+    //OBJECT 
     //This get's the id of whatever category was clicked
-    const handleClick = (e) => {
-        e.preventDefault();
-        // console.log(e.target.id);
-        setLevelOneStr(e.target.id)
-        }
-        //  console.log(levelOneStr)
+    //THis is the Functionality to get object for Table
+    useEffect(() => {
+        getClickedJobObject();
+        }, )
+            
+    const getClickedJobObject = () => {
+        const arrayHold = [];
+        jobs.some(function (job) {
+            arrayHold.push(job.title === jobName)  
+            })
+
+        // console.log(arrayHold);
+        if (arrayHold.includes(true)) {
+             // console.log("Array Hold had one true value")
+            jobs.filter((jobObj) => {
+                if(jobName === jobObj.title){
+                    setJobObj(jobObj)
+                }
+            })
+        } else{
+            setJobObj("")
+        };     
+    };
+
+        
+        ///THis is just a test run for search bar choices
+        ///is this where I should pull all titles?
+    //Search Functionality ???????
+        let jobTitleList =[]
+        const getAllJobNames = () => jobs.filter((job) => {
+                jobTitleList.push(job.title)
+            })
+    
+        getAllJobNames();
+       
 
     return (
         <>
             <div>
                 <Title />
-            </div> 
-            <div className="crumbs">
-                <h6><Link to={"/"}>Jobs</Link> > Job Categories</h6>
             </div>
-            <div className="jobviz-parent">    
-                <div>
+            <div>
+                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+            </div>
+            <div className="jobviz-header" >    
+                
                     <h4>Categories List</h4>
-                    <h6>Level1 key values that shows occupational category links for Data Base Level2 key value components</h6>
-                </div>  
-            </div>    
+                  
+            </div>  
+            <div className="crumbs">
+                <small><Link to={"/"}>Jobs</Link> > Job Categories</small>
+            </div>
+               
             <div className="jobviz-parent"> 
-                <div type="button"
-                        className="purple-dot-background"
-                        onClick={() => {
-                        props.history.push("/");
-                        // console.log("you clicked me");
-                }}></div>  
+                <div className="btn-container">
+                    <div type="button"
+                            className="link-btn"
+                            onClick={() => {
+                            props.history.push("/");
+                            // console.log("you clicked me");
+                    }}>-</div>  
+                </div>
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory, index) => {
                             return (
-                                
-                                <div key={orderedCategory} className="" onClick={handleClick}>
+                                <>
+                                <div key={orderedCategory} onClick={() =>setJobName(orderedCategory)}  className="" >
                                     <LevelOneCard
                                         
                                         id={orderedCategory.id}
@@ -81,12 +142,15 @@ export const LevelOneList = (props) => {
                                         {...props}
                                     />  
                                 </div>
-                                
+                                </>
                             )
                         })}
                     </div>
                 </div>
             </div>        
+            <div className="jobviz-parent">
+                <Table jobObj={jobObj} {...props} />
+            </div>
        </> 
     );
 };

@@ -4,7 +4,7 @@ export default {
     getAll() {
         return fetch(`${remoteURL}/jobs`).then((result) => result.json());
       },
-    getLevel(param) {
-        return fetch(`${remoteURL}/${param}`)
+    getJob(param) {
+        return fetch(`${remoteURL}/jobs?title=${param}`).then((result) => result.json());
     }
 }
