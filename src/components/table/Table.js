@@ -4,6 +4,8 @@ import "../styling/Style.css"
 // import {makeUrlPath} from "../Helper"
 
 export const Table = (props) => {
+
+  
  let jobObj = props.jobObj
 
  if (jobObj === undefined) {
@@ -37,7 +39,7 @@ export const Table = (props) => {
           </div>
           <div className="table-child">
             <h6>Work Experience In a Related Occupation Desired:</h6>
-            <small>{jobObj.TypicalEducationNeededForEntry}</small>
+            <small>{jobObj.WorkExperienceInARelatedOccupation}</small>
           </div>
           <div className="table-child">
             <h6>On-the-job Training:</h6>

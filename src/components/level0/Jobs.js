@@ -25,7 +25,7 @@ return (
         }}> + </div>
         
 
-            <p>Jobs</p>
+            <p className="option">Jobs</p>
         
     
     

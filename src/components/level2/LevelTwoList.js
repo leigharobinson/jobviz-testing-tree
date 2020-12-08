@@ -6,6 +6,7 @@ import {LevelTwoCard} from "./LevelTwoCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
+import {Search} from "../search/Search"
 
 export const LevelTwoList = (props) => {
     //All the objects in jobs array
@@ -36,7 +37,7 @@ export const LevelTwoList = (props) => {
         pathString: "",
         Def: "",
     
-        })
+        });
    
     // the level 1 category url sting we need to pass to children
     let levelOneUrl = props.category;
@@ -79,22 +80,36 @@ export const LevelTwoList = (props) => {
     const getClickedJobObject = () => {
         const arrayHold = [];
         jobs.some(function (job) {
-            arrayHold.push(job.title === jobName)  
+            arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
             jobs.filter((jobObj) => {
-                if(jobName === jobObj.title){
+                if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            setJobObj("")
+            jobs.filter((jobObj) => {
+                if(levelOneString === jobObj.ttl || levelOneString === jobObj.title ){
+                    setJobObj(jobObj)
+                }
+            })
         };     
     };
 
+       
+        ///THis is just a test run for search bar choices
+        ///is this where I should pull all titles?
+    //Search Functionality ???????
+    let jobTitleList =[]
+    const getAllJobNames = () => jobs.filter((job) => {
+            jobTitleList.push(job.title)
+        })
+
+    getAllJobNames();
    
 
 
@@ -103,7 +118,9 @@ export const LevelTwoList = (props) => {
             <div>
                 <Title />
             </div>        
-            
+             <div>
+                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+            </div>
                 
             <div className="jobviz-header">    
                 
@@ -133,7 +150,7 @@ export const LevelTwoList = (props) => {
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
                         return (
-                            <div key={orderedCategory} className="" onClick={() =>setJobName(orderedCategory)}> 
+                            <div key={orderedCategory} className="option" onClick={() =>setJobName(orderedCategory)}> 
                                 <LevelTwoCard
                                 key={orderedCategory}
                                 orderedCategory={orderedCategory}
