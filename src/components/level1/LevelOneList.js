@@ -73,14 +73,14 @@ export const LevelOneList = (props) => {
     const getClickedJobObject = () => {
         const arrayHold = [];
         jobs.some(function (job) {
-            arrayHold.push(job.title === jobName)  
+            arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
             jobs.filter((jobObj) => {
-                if(jobName === jobObj.title){
+                if(jobName === jobObj.ttl || jobName === jobObj.T){
                     setJobObj(jobObj)
                 }
             })

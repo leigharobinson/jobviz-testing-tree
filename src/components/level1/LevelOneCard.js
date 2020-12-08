@@ -43,7 +43,7 @@ if(titleStr !== categoryStr) {
                     // console.log(category)
                   }}>+</div>
             </div>
-              <div id={categoryStr} className="listed-categories">
+              <div id={categoryStr} className="listed-categories option">
                   {categoryStr}
               </div>
         </div>

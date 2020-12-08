@@ -19,7 +19,7 @@ export const LevelFourCard = (props) => {
             <div className="btn-container">                        
             <div type="button" className="end-btn" onClick={() => {
                    
-                   props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}/endpoint/${category}`);
+                   props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}/${category}/endpoint`);
                  }}>🥨</div>
             </div>
             <div id={categoryStr} className="listed-categories">

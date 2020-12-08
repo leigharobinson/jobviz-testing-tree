@@ -6,13 +6,38 @@ import {LevelTwoCard} from "./LevelTwoCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
+import {Search} from "../search/Search"
 
 export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
+    const [jobObj, setJobObj] = useState({
+        id: 0,
+        title: "",
+        Hierarchy: "",
+        OccupationType: "",
+        Employment2016: 0,
+        Employment2026: 0,
+        ChgEmploy2016to26Num: 0,
+        ChgEmploy2016to26Perc: 0,
+        PercentSelfEmployed2016: 0,
+        OccupationalOpenings2016to2026AnnualAverage: 0,
+        MedianAnnualWage2017: "",
+        TypicalEducationNeededForEntr: "",
+        WorkExperienceInARelatedOccupation: "",
+        TypicalOnTheJobTrainingNeededToAttainCompetencyInTheOccupation: "",
+        ttl: "",
+        Level0: "",
+        Level4: "",
+        Level3: "",
+        Level2: "",
+        Level1: "",
+        pathString: "",
+        Def: "",
     
+        })
     
       //endpoint
     let endpoint = props.category
@@ -51,21 +76,57 @@ export const LevelTwoEndpointList = (props) => {
     // console.log("LevelList", LevelOneList)
 
 
-     //This get's the id of whatever category was clicked
-     const handleClick = (e) => {
-        e.preventDefault();
-        // console.log(e.target.id);
-        setJobName(e.target.id)
-        }
-        //  console.log(levelTwoStr)
+    
+    //OBJECT 
+    //This get's the id of whatever category was clicked
+    //THis is the Functionality to get object for Table
+    useEffect(() => {
+        getClickedJobObject();
+        }, )
+            
+    const getClickedJobObject = () => {
+        const arrayHold = [];
+        jobs.some(function (job) {
+            arrayHold.push(job.ttl === jobName)  
+            })
 
+        // console.log(arrayHold);
+        if (arrayHold.includes(true)) {
+             // console.log("Array Hold had one true value")
+            jobs.filter((jobObj) => {
+                if(jobName === jobObj.ttl){
+                    setJobObj(jobObj)
+                }
+            })
+        } else{
+            jobs.filter((jobObj) => {
+                if(endpointString === jobObj.ttl || endpointString === jobObj.title ){
+                    setJobObj(jobObj)
+                }
+            })
+        };     
+    };
+
+      
+        ///THis is just a test run for search bar choices
+        ///is this where I should pull all titles?
+    //Search Functionality ???????
+    let jobTitleList =[]
+    const getAllJobNames = () => jobs.filter((job) => {
+            jobTitleList.push(job.title)
+        })
+
+    getAllJobNames();
+   
 
     return (
         <>
             <div>
                 <Title />
             </div>        
-            
+            <div>
+                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+            </div>
                 
             <div className="jobviz-header">       
                 <h4>{levelOneString}</h4>                 
@@ -94,7 +155,7 @@ export const LevelTwoEndpointList = (props) => {
                     <div className="container-cards">
                         {alphaList.map((orderedCategory) => {
                         return (
-                            <div key={orderedCategory} className="" onClick={handleClick}> 
+                            <div key={orderedCategory} className="option" onClick={() =>setJobName(orderedCategory)}> 
                                 <LevelTwoCard
                                 key={orderedCategory}
                                 orderedCategory={orderedCategory}
@@ -110,7 +171,7 @@ export const LevelTwoEndpointList = (props) => {
                 </div>
             </div>
             <div className="jobviz-parent">
-                <Table jobName={jobName} {...props} />
+                <Table jobObj={jobObj} {...props} />
             </div>        
        </> 
     );

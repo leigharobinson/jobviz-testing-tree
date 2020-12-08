@@ -39,7 +39,7 @@ const ApplicationViews = () => {
         />
         <Route
         exact
-          path="/job-catagories/:levelOneUrl/endpoint/:category"
+          path="/job-catagories/:levelOneUrl/:category/endpoint"
           render={(props) => {
               return <LevelTwoEndpointList levelOneUrl={props.match.params.levelOneUrl} category={props.match.params.category} {...props} />;
           }}
@@ -55,7 +55,7 @@ const ApplicationViews = () => {
 
         <Route
           exact
-          path="/job-catagories/:levelOneUrl/:levelTwoUrl/endpoint/:category"
+          path="/job-catagories/:levelOneUrl/:levelTwoUrl/:category/endpoint"
           render={(props) => {
               return <LevelThreeEndpointList levelOneUrl={props.match.params.levelOneUrl}  levelTwoUrl={props.match.params.levelTwoUrl} category={props.match.params.category} {...props} />;
           }}
@@ -70,7 +70,7 @@ const ApplicationViews = () => {
         />
         <Route
           exact
-          path="/job-catagories/:levelOneUrl/:levelTwoUrl/:levelThreeUrl/endpoint/:category"
+          path="/job-catagories/:levelOneUrl/:levelTwoUrl/:levelThreeUrl/:category/endpoint"
           render={(props) => {
               return <LevelFourEndpointList  levelOneUrl={props.match.params.levelOneUrl}  levelTwoUrl={props.match.params.levelTwoUrl} levelThreeUrl={props.match.params.levelThreeUrl} category={props.match.params.category} {...props} />;
           }}
