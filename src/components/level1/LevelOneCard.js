@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+
 import {makeUrlPath} from "../Helper"
 
 
@@ -19,9 +19,9 @@ const findObj = () => {
     if(job.Level1 === categoryStr) {
       
       let emtStr = job.title;
-      
       titleStr = emtStr;
     }
+    return titleStr; 
   })
 }
 findObj();
@@ -40,7 +40,7 @@ if(titleStr !== categoryStr) {
                   className="link-btn"
                   onClick={() => {
                     props.history.push(`/job-catagories/${category}`);
-                    console.log(category)
+                    // console.log(category)
                   }}>+</div>
             </div>
               <div id={categoryStr} className="listed-categories">

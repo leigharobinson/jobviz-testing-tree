@@ -10,19 +10,20 @@ export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-      const [levelTwoStr, setLevelTwoStr] = useState([]);
+    const [jobName, setJobName] = useState([]);
+    
       //endpoint
     let endpoint = props.category
-    console.log("endpoint", endpoint)
+    // console.log("endpoint", endpoint)
     // the level 1 category url sting we need to pass to children
     let levelOneUrl = props.levelOneUrl;
-    console.log("levelONe URL",levelOneUrl)
+    // console.log("levelONe URL",levelOneUrl)
     //the level 1 category 'normal' string we need to match to make sure 
     //we only select level 2 categories that have the same level 1 category
     let levelOneString = makeStringPath(levelOneUrl);
     let endpointString = makeStringPath(endpoint);
 
-    console.log(levelOneUrl)
+   
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
             setJobs(jobs)
@@ -33,7 +34,7 @@ export const LevelTwoEndpointList = (props) => {
     let levelList = []
     // console.log(levelList, "Here it is ONe")
 
-    const filsterlevelTwo = () => jobs.map((jobCategory) => {
+    const filterlevelTwo = () => jobs.filter((jobCategory) => {
         let noDash = removeDash(jobCategory.Level1)
         // console.log(noDash)
         if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
@@ -42,7 +43,7 @@ export const LevelTwoEndpointList = (props) => {
     });
 
    //call filter
-    filsterlevelTwo(); 
+    filterlevelTwo(); 
     //alphabitize sorted list to use when mapping array to DOM  
     const alphaList = levelList.sort()
     // console.log("LevelList", LevelOneList)
@@ -52,7 +53,7 @@ export const LevelTwoEndpointList = (props) => {
      const handleClick = (e) => {
         e.preventDefault();
         // console.log(e.target.id);
-        setLevelTwoStr(e.target.id)
+        setJobName(e.target.id)
         }
         //  console.log(levelTwoStr)
 

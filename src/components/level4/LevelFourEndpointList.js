@@ -6,27 +6,30 @@ import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 
-export const LevelFourList = (props) => {
+export const LevelFourEndpointList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
     const [jobName, setJobName] = useState([]);
-
-    // the level 1 category url sting we need to pass to children
-    const levelOneUrl = props.levelOneUrl;
-    // the level 2 category url sting we need to pass to children
-    const levelTwoUrl = props.levelTwoUrl;
-    // the level 3 category url sting we need to pass to children
-    const levelThreeUrl = props.category;
     
-    let levelOneString = makeStringPath(props.levelOneUrl);
+    //endpoint
+    let endpoint = props.category
+    // the level 1 category url string we need to pass to children
+    const levelOneUrl = props.levelOneUrl;
+    // the level 2 category url string we need to pass to children
+    const levelTwoUrl = props.levelTwoUrl;
+    // the level 3 category url string we need to pass to children
+    const levelThreeUrl = props.levelThreeUrl;
+    console.log(levelThreeUrl)
+    let levelOneString = makeStringPath(levelOneUrl);
     //the level 2 category 'normal' string we need to match to make sure 
    //we only select level 3 categories that have the same level 1 category
-   let levelTwoString = makeStringPath(props.levelTwoUrl);
+   let levelTwoString = makeStringPath(levelTwoUrl);
     //the level 2 category 'normal' string we need to match to make sure 
     //we only select level 4 categories that have the same level 1 category
-    let levelThreeString = makeStringPath(props.category);
-    // console.log(levelThreeString)
+    let levelThreeString = makeStringPath(levelThreeUrl);
+    
+    let endpointString = makeStringPath(endpoint);
 
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
@@ -57,7 +60,7 @@ export const LevelFourList = (props) => {
         // console.log(e.target.id);
         setJobName(e.target.id)
         }
-        //  console.log(levelTwoStr)
+      
 
    return (
         <>
@@ -65,13 +68,13 @@ export const LevelFourList = (props) => {
             <Title />
         </div>
         <div className="jobviz-header">
-                    <h4>{levelThreeString}</h4>
-                </div>  
-            <div className="crumbs">
-                        <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > {levelThreeString}</small>
+            <h4>{endpointString}</h4>
+        </div> 
+        <div className="crumbs">
+            <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl/levelThreeUrl}`}>{levelThreeString}</Link> > {endpointString}</small>
            
         </div>
-         
+           
         <div className="jobviz-parent"> 
             <div className="btn-container">
                     <div type="button"

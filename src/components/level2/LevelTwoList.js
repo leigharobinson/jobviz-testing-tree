@@ -10,7 +10,8 @@ export const LevelTwoList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-      const [levelTwoStr, setLevelTwoStr] = useState([]);
+    const [jobName, setJobName] = useState([]);
+   
     // the level 1 category url sting we need to pass to children
     let levelOneUrl = props.category;
     //the level 1 category 'normal' string we need to match to make sure 
@@ -27,7 +28,7 @@ export const LevelTwoList = (props) => {
     let levelList = []
     // console.log(levelList, "Here it is ONe")
 
-    const filsterlevelTwo = () => jobs.map((jobCategory) => {
+    const filsterlevelTwo = () => jobs.filter((jobCategory) => {
         let noDash = removeDash(jobCategory.Level1)
         // console.log(noDash)
         if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
@@ -46,7 +47,7 @@ export const LevelTwoList = (props) => {
      const handleClick = (e) => {
         e.preventDefault();
         // console.log(e.target.id);
-        setLevelTwoStr(e.target.id)
+        setJobName(e.target.id)
         }
         //  console.log(levelTwoStr)
 

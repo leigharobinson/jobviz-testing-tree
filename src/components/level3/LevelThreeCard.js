@@ -52,7 +52,10 @@ if(titleStr !== categoryStr) {
         <>
           <div className="jobviz-parent-card">
             <div className="btn-container">                        
-              <div type="button" className="end-btn"></div>
+            <div type="button" className="end-btn" onClick={() => {
+                   
+                   props.history.push(`/job-catagories/${levelOneUrl}/${levelTwoUrl}/endpoint/${category}`);
+                 }}>🥨</div>
             </div>
             <div id={categoryStr} className="listed-categories">
                     {categoryStr}

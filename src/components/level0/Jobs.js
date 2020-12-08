@@ -1,11 +1,15 @@
 import React from "react"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
+import  {Search}  from "../search/Search"
 
 export const Jobs = (props) => (
     <>
         <div>
             <Title />
+        </div>
+        <div>
+            <Search />
         </div>
         <div className="jobviz-parent"> 
             

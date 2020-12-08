@@ -4,12 +4,15 @@ import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
 import { Link } from "react-router-dom";
+import  {Search}  from "../search/Search"
+import {Table} from "../table/Table"
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
     const [jobs, setJobs] = useState([]);
     //where we set the id of the category that was clicked to sate
-    const [levelOneStr, setLevelOneStr] = useState([]);
+    const [jobName, setJobName] = useState([]);
+
 
    //set job obj from GET call to state
     useEffect(() => {
@@ -23,12 +26,12 @@ export const LevelOneList = (props) => {
   
     let levelList = []
     // console.log(levelList)
-    const filterLevelOne = () => jobs.map((jobCategory) => {
+    const filterLevelOne = () => jobs.filter((jobCategory) => {
         if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
             levelList.push(jobCategory.Level1);
         
         }
-
+       
     })
     //call filter
     filterLevelOne()
@@ -40,25 +43,38 @@ export const LevelOneList = (props) => {
     //This get's the id of whatever category was clicked
     const handleClick = (e) => {
         e.preventDefault();
-        // console.log(e.target.id);
-        setLevelOneStr(e.target.id)
+        console.log(e.target.id);
+        setJobName(e.target.id)
         }
-        //  console.log(levelOneStr)
+    
+    ///THis is just a test run for search bar choices
+    ///is this where I should pull all titles?
+
+    let jobTitleList =[]
+    const getAllJobNames = () => jobs.filter((job) => {
+            jobTitleList.push(job.title)
+        })
+
+    getAllJobNames();
+   
 
     return (
         <>
             <div>
                 <Title />
-            </div> 
-            <div className="crumbs">
-                <small><Link to={"/"}>Jobs</Link> > Job Categories</small>
+            </div>
+            <div>
+                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
             <div className="jobviz-header" >    
                 
                     <h4>Categories List</h4>
-                    <small>Level1 key values that shows occupational category links for Data Base Level2 key value components</small>
                   
-            </div>    
+            </div>  
+            <div className="crumbs">
+                <small><Link to={"/"}>Jobs</Link> > Job Categories</small>
+            </div>
+               
             <div className="jobviz-parent"> 
                 <div className="btn-container">
                     <div type="button"
@@ -87,6 +103,9 @@ export const LevelOneList = (props) => {
                             )
                         })}
                     </div>
+                </div>
+                <div>
+                    <Table jobName={jobName} {...props} />
                 </div>
             </div>        
        </> 

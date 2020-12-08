@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {makeUrlPath} from "../Helper"
 
 
@@ -61,8 +61,8 @@ if(titleStr !== categoryStr) {
             <div className="btn-container">                        
               <div type="button" className="end-btn" onClick={() => {
                    
-                    props.history.push(`/job-catagories/${levelOneUrl}/${category}/endpoint`);
-                  }}>o</div>
+                    props.history.push(`/job-catagories/${levelOneUrl}/endpoint/${category}`);
+                  }}>🥨</div>
             </div>
             <div id={categoryStr} className="listed-categories">
                     {categoryStr}
