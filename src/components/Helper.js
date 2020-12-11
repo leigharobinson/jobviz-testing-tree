@@ -6,10 +6,15 @@ export function makeStringPath(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
    
 }
+
+
+
 export function makeUrlPath(str) {
+   str = str.replace( /[()\\\/]/g, " " )
    str = str.replace(/\s+/g, '-').toLowerCase();
-   return str
+   return str;
 }
+
 
 
 
