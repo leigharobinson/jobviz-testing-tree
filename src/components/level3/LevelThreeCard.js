@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {makeUrlPath} from "../Helper"
 
 
@@ -13,7 +13,7 @@ export const LevelThreeCard = (props) => {
   // LR look back at this, there must be simpler way
 let titleStr = "";
 const findObj = () => {
-  jobs.filter((job)=> {   
+  jobs.forEach((job)=> {   
     if(job.Level3 === categoryStr) {
       
       let emtStr = job.title;

@@ -10,7 +10,7 @@ export function makeStringPath(str) {
 
 
 export function makeUrlPath(str) {
-   str = str.replace( /[()\\\/]/g, " " )
+   str = str.replace( /[()\\]/g, " " )
    str = str.replace(/\s+/g, '-').toLowerCase();
    return str;
 }

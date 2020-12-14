@@ -1,11 +1,12 @@
-import React, {useState} from "react"
+import React from "react"
 import {Title} from "../title/Title"
 import "../styling/Style.css"
 import  {Search}  from "../search/Search"
 import {Table} from "../table/Table"
 
 export const Jobs = (props) => {
-const [jobObj, setJobObj] = useState("")
+
+const jobObj = "";
 
 return ( 
     <>

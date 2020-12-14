@@ -63,7 +63,7 @@ export const LevelThreeList = (props) => {
     //empty arry to push names of target level (Leve2)
     let levelList = []
 //    console.log(levelList, "Here it is")
-    const filterlevelThree = () => jobs.filter((jobCategory) => {
+    const filterlevelThree = () => jobs.forEach((jobCategory) => {
         let noDash = removeDash(jobCategory.Level2)
         if (noDash === levelTwoString && jobCategory.Level3 !== "NA" && !levelList.includes(jobCategory.Level3)) {
             levelList.push(jobCategory.Level3)
@@ -85,21 +85,23 @@ export const LevelThreeList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            jobs.filter((jobObj) => {
-                if(levelTwoString === jobObj.ttl || levelTwoString === jobObj.title){
+            jobs.forEach((jobObj) => {
+                let noDashTtl = removeDash(jobObj.ttl)
+                let noDashObj = removeDash(jobObj.title)
+                if(levelTwoString === noDashTtl || levelTwoString === noDashObj){
                     setJobObj(jobObj)
                 }
             })
@@ -110,7 +112,7 @@ export const LevelThreeList = (props) => {
         ///is this where I should pull all titles?
     //Search Functionality ???????
     let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
+    const getAllJobNames = () => jobs.forEach((job) => {
             jobTitleList.push(job.title)
         })
 
@@ -156,13 +158,13 @@ export const LevelThreeList = (props) => {
                         className="link-btn"
                         onClick={() => {
                             props.history.push(`/job-catagories/${levelOneUrl}`);
-                            console.log("you clicked me");
+                            // console.log("you clicked me");
                 }}>-</div> 
             </div>
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory, i) => {
                         return (
-                            <div key={orderedCategory} className="option" onClick={() =>setJobName(orderedCategory)}> 
+                            <div key={i} className="option" onClick={() =>setJobName(orderedCategory)}> 
                                 <LevelThreeCard
                                     key={orderedCategory}
                                     orderedCategory={orderedCategory}

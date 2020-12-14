@@ -1,12 +1,15 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import "../styling/Style.css"
 
 export const Search = (props) => {
+
 const [input, setInput] = useState("");
+const [jobTitles, setJobTitles] = useState([])
 
 const handleChange = (e) => {
     setInput(e)
 }
+
 
  
     return (

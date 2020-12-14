@@ -55,7 +55,7 @@ export const LevelTwoList = (props) => {
     let levelList = []
     // console.log(levelList, "Here it is ONe")
 
-    const filsterlevelTwo = () => jobs.filter((jobCategory) => {
+    const filsterlevelTwo = () => jobs.forEach((jobCategory) => {
         let noDash = removeDash(jobCategory.Level1)
         // console.log(noDash)
         if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
@@ -79,21 +79,23 @@ export const LevelTwoList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            jobs.filter((jobObj) => {
-                if(levelOneString === jobObj.ttl || levelOneString === jobObj.title ){
+            jobs.forEach((jobObj) => {
+                let noDashTtl = removeDash(jobObj.ttl)
+                let noDashObj = removeDash(jobObj.title)
+                if(levelOneString === noDashTtl || levelOneString === noDashObj ){
                     setJobObj(jobObj)
                 }
             })
@@ -105,7 +107,7 @@ export const LevelTwoList = (props) => {
         ///is this where I should pull all titles?
     //Search Functionality ???????
     let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
+    const getAllJobNames = () => jobs.forEach((job) => {
             jobTitleList.push(job.title)
         })
 
@@ -148,15 +150,15 @@ export const LevelTwoList = (props) => {
                 </div>
                 <div className="jobViz-parent">
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory, i) => {
                         return (
-                            <div key={orderedCategory} className="option" onClick={() =>setJobName(orderedCategory)}> 
+                            <div key={i} className="option" onClick={() =>setJobName(orderedCategory)}> 
                                 <LevelTwoCard
-                                key={orderedCategory}
-                                orderedCategory={orderedCategory}
-                                jobs={jobs}
-                                levelOneUrl={levelOneUrl}
-                                {...props}
+                                    key={orderedCategory}
+                                    orderedCategory={orderedCategory}
+                                    jobs={jobs}
+                                    levelOneUrl={levelOneUrl}
+                                    {...props}
                                 />
                             </div>
                         )
