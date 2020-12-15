@@ -6,7 +6,7 @@ import {LevelThreeCard} from "./LevelThreeCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import {Search} from "../search/Search"
+import { Autocomplete } from "../search/OldSearch"
 
 export const LevelThreeList = (props) => {
     //All the objects in jobs array
@@ -113,7 +113,9 @@ export const LevelThreeList = (props) => {
     //Search Functionality ???????
     let jobTitleList =[]
     const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
             jobTitleList.push(job.title)
+        }
         })
 
     getAllJobNames();
@@ -125,7 +127,7 @@ export const LevelThreeList = (props) => {
             <Title />
         </div>
         <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">    
                 

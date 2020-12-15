@@ -6,7 +6,8 @@ import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import {Search} from "../search/Search"
+// import {AutoSearch} from "../search/AutoSearch"
+import { Autocomplete } from "../search/OldSearch"
 
 
 export const LevelFourEndpointList = (props) => {
@@ -124,7 +125,9 @@ export const LevelFourEndpointList = (props) => {
     //Search Functionality ???????
     let jobTitleList =[]
     const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
             jobTitleList.push(job.title)
+        }
         })
 
     getAllJobNames();
@@ -137,7 +140,7 @@ export const LevelFourEndpointList = (props) => {
             <Title />
         </div>
         <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">
             <h4>{categoryString}</h4>
