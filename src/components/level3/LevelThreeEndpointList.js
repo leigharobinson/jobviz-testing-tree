@@ -6,7 +6,7 @@ import {LevelThreeCard} from "./LevelThreeCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import {Search} from "../search/Search"
+import { Autocomplete } from "../search/OldSearch"
 
 export const LevelThreeEndpointList = (props) => {
     //All the objects in jobs array
@@ -61,12 +61,13 @@ export const LevelThreeEndpointList = (props) => {
     //empty arry to push names of target level (Leve2)
     let levelList = []
 //    console.log(levelList, "Here it is")
-    const filterlevelThree = () => jobs.filter((jobCategory) => {
+    const filterlevelThree = () => jobs.forEach((jobCategory) => {
         let noDash = removeDash(jobCategory.Level2)
         if (noDash === levelTwoString && jobCategory.Level3 !== "NA" && !levelList.includes(jobCategory.Level3)) {
-            levelList.push(jobCategory.Level3)
+            levelList.push(jobCategory.Level3);
         }
-    });
+       
+    }  );
 
     //call filter
     filterlevelThree();  
@@ -84,21 +85,23 @@ export const LevelThreeEndpointList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(jobObj.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            jobs.filter((jobObj) => {
-                if(endpointString === jobObj.title || endpointString === jobObj.ttl){
+            jobs.forEach((jobObj) => {
+                let noDashTtl = removeDash(jobObj.ttl)
+                let noDashObj = removeDash(jobObj.title)
+                if(endpointString === noDashTtl|| endpointString === noDashObj){
                     setJobObj(jobObj)
                 }
             })
@@ -109,8 +112,10 @@ export const LevelThreeEndpointList = (props) => {
         ///is this where I should pull all titles?
     //Search Functionality ???????
     let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
+    const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
             jobTitleList.push(job.title)
+        }
         })
 
     getAllJobNames();
@@ -123,7 +128,7 @@ export const LevelThreeEndpointList = (props) => {
             <Title />
         </div>
         <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">    
                 

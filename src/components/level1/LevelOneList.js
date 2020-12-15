@@ -4,8 +4,8 @@ import {Title} from "../title/Title"
 import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
 import { Link } from "react-router-dom";
-import  {Search}  from "../search/Search"
 import {Table} from "../table/Table"
+import { Autocomplete } from "../search/OldSearch"
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
@@ -50,10 +50,10 @@ export const LevelOneList = (props) => {
   
     let levelList = []
     // console.log(levelList)
-    const filterLevelOne = () => jobs.filter((jobCategory) => {
+    const filterLevelOne = () => jobs.forEach((jobCategory) => {
         if (jobCategory.Level1 !== "NA" && !levelList.includes(jobCategory.Level1)) {
-            levelList.push(jobCategory.Level1);
-        
+            // levelList.push(jobCategory.Level1);
+            return levelList.push(jobCategory.Level1);
         }
        
     })
@@ -72,20 +72,20 @@ export const LevelOneList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl || jobName === jobObj.T){
-                    setJobObj(jobObj)
+                    return setJobObj(jobObj);
                 }
             })
         } else{
-            setJobObj("")
+            return setJobObj("");
         };     
     };
 
@@ -93,10 +93,12 @@ export const LevelOneList = (props) => {
         ///THis is just a test run for search bar choices
         ///is this where I should pull all titles?
     //Search Functionality ???????
-        let jobTitleList =[]
-        const getAllJobNames = () => jobs.filter((job) => {
-                jobTitleList.push(job.title)
-            })
+    let jobTitleList =[]
+    const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
+            jobTitleList.push(job.title)
+        }
+        })
     
         getAllJobNames();
        
@@ -107,7 +109,7 @@ export const LevelOneList = (props) => {
                 <Title />
             </div>
             <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
             <div className="jobviz-header" >    
                 
@@ -129,20 +131,20 @@ export const LevelOneList = (props) => {
                 </div>
                 <div className="jobs-parent">
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory, index) => {
+                        {alphaList.map((orderedCategory, i) => {
                             return (
-                                <>
-                                <div key={orderedCategory} onClick={() =>setJobName(orderedCategory)}  className="" >
+                                
+                                <div key={i} onClick={() =>setJobName(orderedCategory)}  className="" >
                                     <LevelOneCard
                                         
-                                        id={orderedCategory.id}
                                         key={orderedCategory}
+                                       
                                         orderedCategory={orderedCategory}
                                         jobs={jobs}
                                         {...props}
                                     />  
                                 </div>
-                                </>
+                                
                             )
                         })}
                     </div>

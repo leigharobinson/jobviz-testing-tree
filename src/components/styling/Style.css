@@ -402,7 +402,7 @@ input[type="text"] {
 
 #search_border {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 
   margin: 25px;
 }

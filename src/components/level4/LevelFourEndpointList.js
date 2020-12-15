@@ -6,7 +6,8 @@ import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import {Search} from "../search/Search"
+// import {AutoSearch} from "../search/AutoSearch"
+import { Autocomplete } from "../search/OldSearch"
 
 
 export const LevelFourEndpointList = (props) => {
@@ -58,6 +59,7 @@ export const LevelFourEndpointList = (props) => {
     let levelThreeString = makeStringPath(levelThreeUrl);
     
     let categoryString = makeStringPath(category);
+    // console.log(categoryString, "CATEGORY STRING");
 
     useEffect(() => {
         JobManager.getAll().then((jobs) => {
@@ -69,7 +71,7 @@ export const LevelFourEndpointList = (props) => {
     let levelList = []
     
     // console.log("levelList", levelList)
-    const filsterlevelFour = () => jobs.filter((jobCategory) => {
+    const filsterlevelFour = () => jobs.forEach((jobCategory) => {
         let noDash = removeDash(jobCategory.Level3)
         if (noDash === levelThreeString && jobCategory.Level4 !== "NA" && !levelList.includes(jobCategory.Level4)) {
             levelList.push(jobCategory.Level4)
@@ -92,37 +94,45 @@ export const LevelFourEndpointList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            jobs.filter((jobObj) => {
-                if(categoryString === jobObj.ttl || categoryString === jobObj.title){
+            jobs.forEach((jobObj) => {
+                let noDashTtl = removeDash(jobObj.ttl)
+                let noDashObj = removeDash(jobObj.title)
+                if(categoryString === noDashTtl || categoryString === noDashObj){
                     setJobObj(jobObj)
+                   
                 }
             })
         };     
     };
       
+    //  console.log(jobObj, "Job Object")
 
          ///THis is just a test run for search bar choices
         ///is this where I should pull all titles?
     //Search Functionality ???????
     let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
+    const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
             jobTitleList.push(job.title)
+        }
         })
 
     getAllJobNames();
+
+    // console.log(categoryString)
 
    return (
         <>
@@ -130,13 +140,20 @@ export const LevelFourEndpointList = (props) => {
             <Title />
         </div>
         <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">
             <h4>{categoryString}</h4>
         </div> 
         <div className="crumbs">
-            <small><Link to={"/"}>Jobs</Link> > <Link to={"/job-catagories"}>Job Categories</Link> > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link> > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}`}>{levelThreeString}</Link> > {categoryString}</small>
+            <small>
+                <Link to={"/"}>Jobs</Link>
+                > <Link to={"/job-catagories"}>Job Categories</Link>
+                > <Link to={`/job-catagories/${levelOneUrl}`}>{levelOneString}</Link>
+                > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}`}>{levelTwoString}</Link>
+                > <Link to={`/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}`}>{levelThreeString}</Link>
+                > {categoryString}
+            </small>
            
         </div>
            
@@ -162,7 +179,7 @@ export const LevelFourEndpointList = (props) => {
                             className="link-btn"
                             onClick={() => {
                                 props.history.push(`/job-catagories/${levelOneUrl}`);
-                                console.log("you clicked me");
+                                // console.log("you clicked me");
                     }}>-</div> 
                 </div>
                 <div className="btn-container">

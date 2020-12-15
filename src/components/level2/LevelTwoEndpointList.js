@@ -6,7 +6,7 @@ import {LevelTwoCard} from "./LevelTwoCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import {Search} from "../search/Search"
+import { Autocomplete } from "../search/OldSearch"
 
 export const LevelTwoEndpointList = (props) => {
     //All the objects in jobs array
@@ -61,7 +61,7 @@ export const LevelTwoEndpointList = (props) => {
     let levelList = []
     // console.log(levelList, "Here it is ONe")
 
-    const filterlevelTwo = () => jobs.filter((jobCategory) => {
+    const filterlevelTwo = () => jobs.forEach((jobCategory) => {
         let noDash = removeDash(jobCategory.Level1)
         // console.log(noDash)
         if (noDash === levelOneString && jobCategory.Level2 !== "NA" && !levelList.includes(jobCategory.Level2)) {
@@ -86,21 +86,23 @@ export const LevelTwoEndpointList = (props) => {
             
     const getClickedJobObject = () => {
         const arrayHold = [];
-        jobs.some(function (job) {
+        jobs.forEach(function (job) {
             arrayHold.push(job.ttl === jobName)  
             })
 
         // console.log(arrayHold);
         if (arrayHold.includes(true)) {
              // console.log("Array Hold had one true value")
-            jobs.filter((jobObj) => {
+            jobs.forEach((jobObj) => {
                 if(jobName === jobObj.ttl){
                     setJobObj(jobObj)
                 }
             })
         } else{
-            jobs.filter((jobObj) => {
-                if(endpointString === jobObj.ttl || endpointString === jobObj.title ){
+            jobs.forEach((jobObj) => {
+                let noDashTtl = removeDash(jobObj.ttl)
+                let noDashObj = removeDash(jobObj.title)
+                if(endpointString === noDashTtl || endpointString === noDashObj ){
                     setJobObj(jobObj)
                 }
             })
@@ -112,8 +114,10 @@ export const LevelTwoEndpointList = (props) => {
         ///is this where I should pull all titles?
     //Search Functionality ???????
     let jobTitleList =[]
-    const getAllJobNames = () => jobs.filter((job) => {
+    const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
             jobTitleList.push(job.title)
+        }
         })
 
     getAllJobNames();
@@ -125,7 +129,7 @@ export const LevelTwoEndpointList = (props) => {
                 <Title />
             </div>        
             <div>
-                <Search jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
                 
             <div className="jobviz-header">       
@@ -153,9 +157,9 @@ export const LevelTwoEndpointList = (props) => {
                 </div>
                 <div className="jobViz-parent">
                     <div className="container-cards">
-                        {alphaList.map((orderedCategory) => {
+                        {alphaList.map((orderedCategory, i) => {
                         return (
-                            <div key={orderedCategory} className="option" onClick={() =>setJobName(orderedCategory)}> 
+                            <div key={i} className="option" onClick={() =>setJobName(orderedCategory)}> 
                                 <LevelTwoCard
                                 key={orderedCategory}
                                 orderedCategory={orderedCategory}

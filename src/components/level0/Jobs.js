@@ -1,11 +1,34 @@
-import React, {useState} from "react"
+import React, { useState, useEffect } from "react";
 import {Title} from "../title/Title"
 import "../styling/Style.css"
-import  {Search}  from "../search/Search"
+import JobManager  from "../../modules/JobManager"
+import { Autocomplete } from "../search/OldSearch"
 import {Table} from "../table/Table"
 
 export const Jobs = (props) => {
-const [jobObj, setJobObj] = useState("")
+const [jobs, setJobs] = useState([]);
+
+const jobObj = "";
+ //set job obj from GET call to state
+ useEffect(() => {
+    JobManager.getAll().then((jobs) => {
+        setJobs(jobs)
+    })
+}, []);
+
+
+   
+        ///THis is just a test run for search bar choices
+        ///is this where I should pull all titles?
+    //Search Functionality ???????
+    let jobTitleList =[]
+    const getAllJobNames = () => jobs.forEach((job) => {
+        if (!jobTitleList.includes(job.title)) {
+            jobTitleList.push(job.title)
+        }
+        })
+
+    getAllJobNames();
 
 return ( 
     <>
@@ -13,7 +36,7 @@ return (
         <Title />
     </div>
     <div>
-        <Search />
+        <Autocomplete jobs={jobs} jobTitleList={jobTitleList} />
     </div>
     <div className="jobviz-parent"> 
         

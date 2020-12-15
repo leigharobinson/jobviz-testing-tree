@@ -13,7 +13,7 @@ let category = makeUrlPath(categoryStr);
 // LR look back at this, there must be simpler way
 let titleStr = "";
 const findObj = () => {
-  jobs.filter((job)=> {   
+  jobs.forEach((job)=> {   
     if(job.Level2 === categoryStr) {
       
       let emtStr = job.title;
@@ -24,9 +24,7 @@ const findObj = () => {
 }
 findObj();
 
-const bkColorChange = () => {
-  document.body.style.backgroundColor = "#282c34"
-}
+
 // console.log(categoryStr);
 // console.log(titleStr);
 
