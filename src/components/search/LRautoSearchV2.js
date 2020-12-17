@@ -56,8 +56,11 @@ export const LrAutoSearchV2 = (props) => {
 
   useEffect(() => {
     getSelectedJobObject();
-    //   goToJobUrl();
   }, [selectedJob]);
+
+  useEffect(() => {
+    goToJobUrl(selectedJobObj);
+  }, [selectedJobObj]);
 
   const getSelectedJobObject = () => {
     jobs.forEach(function (job) {
@@ -90,9 +93,9 @@ export const LrAutoSearchV2 = (props) => {
 
   ///////////try to match url path here?
   //   console.log("Selected job", selectedJob)
-  console.log("Selected Job Obj", selectedJobObj);
+  // console.log("Selected Job Obj", selectedJobObj);
 
-  const goToJobUrl = () => {
+  const goToJobUrl = (selectedJobObj) => {
     const jobCatagories = "job-catagories";
     let category = "";
     let title = selectedJobObj.title;
@@ -103,7 +106,7 @@ export const LrAutoSearchV2 = (props) => {
     let level4 = selectedJobObj.Level4;
 
     if (title !== "" && title === level0) {
-      console.log(level0, `/`);
+      // console.log(level0, `/`);
       props.history.push(`/`);
     } else if (
       title !== "" &&
@@ -113,7 +116,7 @@ export const LrAutoSearchV2 = (props) => {
       title !== level4
     ) {
       category = makeUrlPath(level1);
-      console.log("Fake URL Level 1", `/${jobCatagories}/${category}`);
+      // console.log("Fake URL Level 1", `/${jobCatagories}/${category}`);
       props.history.push(`/${jobCatagories}/${category}`);
     } else if (
       title !== "" &&
@@ -124,10 +127,10 @@ export const LrAutoSearchV2 = (props) => {
     ) {
       level1 = makeUrlPath(level1);
       category = makeUrlPath(level2);
-      console.log(
-        "Fake URl Level 2",
-        `/${jobCatagories}/${level1}/${category}/endpoint`
-      );
+      // console.log(
+      //   "Fake URl Level 2",
+      //   `/${jobCatagories}/${level1}/${category}/endpoint`
+      // );
       props.history.push(`/${jobCatagories}/${level1}/${category}/endpoint`);
     } else if (
       title !== "" &&
@@ -140,10 +143,10 @@ export const LrAutoSearchV2 = (props) => {
       level2 = makeUrlPath(level2);
       category = makeUrlPath(level3);
 
-      console.log(
-        "Fake URl Level 3",
-        `/${jobCatagories}/${level1}/${level2}/${category}/endpoint`
-      );
+      // console.log(
+      //   "Fake URl Level 3",
+      //   `/${jobCatagories}/${level1}/${level2}/${category}/endpoint`
+      // );
       props.history.push(
         `/${jobCatagories}/${level1}/${level2}/${category}/endpoint`
       );
@@ -159,10 +162,10 @@ export const LrAutoSearchV2 = (props) => {
       level3 = makeUrlPath(level3);
       category = makeUrlPath(level4);
 
-      console.log(
-        "Fake URl Level 4",
-        `/${jobCatagories}/${level1}/${level2}/${level3}/${category}/endpoint`
-      );
+      // console.log(
+      //   "Fake URl Level 4",
+      //   `/${jobCatagories}/${level1}/${level2}/${level3}/${category}/endpoint`
+      // );
       props.history.push(
         `/${jobCatagories}/${level1}/${level2}/${level3}/${category}/endpoint`
       );
@@ -191,7 +194,7 @@ export const LrAutoSearchV2 = (props) => {
         <div id="float-options">
           {showOptions &&
             userInput &&
-            (filteredOptions.length ? (
+            (filteredOptions.length > 0 ? (
               <ul className="options">
                 {filteredOptions.map((optionName, index) => {
                   let className;
