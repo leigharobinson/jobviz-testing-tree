@@ -7,7 +7,9 @@ import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
 // import {AutoSearch} from "../search/AutoSearch"
-import { Autocomplete } from "../search/OldSearch"
+// import { Autocomplete } from "../search/OldSearch"
+// import {LrAutoSearch} from "../search/LRautoSearch"
+import {LrAutoSearchV2} from "../search/LRautoSearchV2"
 
 
 export const LevelFourEndpointList = (props) => {
@@ -140,7 +142,7 @@ export const LevelFourEndpointList = (props) => {
             <Title />
         </div>
         <div>
-                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">
             <h4>{categoryString}</h4>

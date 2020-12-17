@@ -6,7 +6,9 @@ import {LevelThreeCard} from "./LevelThreeCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import { Autocomplete } from "../search/OldSearch"
+// import { Autocomplete } from "../search/OldSearch"
+// import {LrAutoSearch} from "../search/LRautoSearch"
+import {LrAutoSearchV2} from "../search/LRautoSearchV2"
 
 export const LevelThreeList = (props) => {
     //All the objects in jobs array
@@ -127,7 +129,7 @@ export const LevelThreeList = (props) => {
             <Title />
         </div>
         <div>
-                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">    
                 

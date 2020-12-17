@@ -5,7 +5,9 @@ import "../styling/Style.css"
 import {LevelOneCard} from "./LevelOneCard"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import { Autocomplete } from "../search/OldSearch"
+// import { Autocomplete } from "../search/OldSearch"
+// import {LrAutoSearch} from "../search/LRautoSearch"
+import {LrAutoSearchV2} from "../search/LRautoSearchV2"
 
 export const LevelOneList = (props) => {
     //All the objects in jobs array
@@ -109,7 +111,7 @@ export const LevelOneList = (props) => {
                 <Title />
             </div>
             <div>
-                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
             <div className="jobviz-header" >    
                 

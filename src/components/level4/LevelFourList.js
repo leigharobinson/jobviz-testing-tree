@@ -6,7 +6,9 @@ import {LevelFourCard} from "./LevelFourCard"
 import {makeStringPath, removeDash} from "../Helper"
 import { Link } from "react-router-dom";
 import {Table} from "../table/Table"
-import { Autocomplete } from "../search/OldSearch"
+// import { Autocomplete } from "../search/OldSearch"
+// import {LrAutoSearch} from "../search/LRautoSearch"
+import {LrAutoSearchV2} from "../search/LRautoSearchV2"
 
 
 export const LevelFourList = (props) => {
@@ -148,7 +150,7 @@ return (
             <Title />
         </div>
         <div>
-                <Autocomplete jobs={jobs} jobTitleList={jobTitleList} {...props}  />
+                <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props}  />
             </div>
         <div className="jobviz-header">
                     <h4>{levelThreeString}</h4>
