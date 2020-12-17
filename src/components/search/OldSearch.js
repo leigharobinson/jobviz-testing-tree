@@ -107,7 +107,7 @@ export class Autocomplete extends Component {
       // const levelTwoUrl = this.props.levelTwoUrl
       // const levelThreeUrl = this.props.levelThreeUrl
       // const category = this.props.category
-      var data = jobs.filter(function (job) {
+      jobs.forEach(function (job) {
       let category = ""
       const jobCatagories = "job-catagories"
       let levelOneUrl = ""
@@ -119,22 +119,22 @@ export class Autocomplete extends Component {
         
         console.log(job.Level0, `/`)
         // this.props.history.push(`/job-catagories/`)
-      } else if (job.Level1 === userInput) {
+      } else if (job.Level1 === userInput && job.title === userInput && job.Level2 !== userInput && job.Level3 !== userInput && job.Level4 !== userInput) {
         category = makeUrlPath(job.Level1);
         console.log("Fake URL Level 1", `/${jobCatagories}/${category}`)
         // this.props.history.push(`/job-catagories/`)
-      } else if (job.Level2 === userInput) {
+      } else if (job.Level2 === userInput && job.title === userInput && job.Level3 !== userInput && job.Level4 !== userInput) {
         category = makeUrlPath(job.Level2);
         levelOneUrl = makeUrlPath(job.Level1);
         console.log("Fake URl Level 2", `/${jobCatagories}/${levelOneUrl}/${category}/endpoint`)
           // this.props.history.push(`/job-catagories/`)
-      } else if (job.Level3 === userInput) {
+      } else if (job.Level3 === userInput && job.title === userInput && job.Level4 !== userInput) {
         category = makeUrlPath(job.Level3);
         levelOneUrl = makeUrlPath(job.Level1);
         levelTwoUrl = makeUrlPath(job.Level2);
-        console.log("Fake URl Level 2", `/${jobCatagories}/${levelOneUrl}/${levelTwoUrl}/${category}/endpoint`)
+        console.log("Fake URl Level 3", `/${jobCatagories}/${levelOneUrl}/${levelTwoUrl}/${category}/endpoint`)
           // this.props.history.push(`/job-catagories/`)
-      } else if (job.Level4 === userInput) {
+      } else if (job.Level4 === userInput && job.title === userInput) {
         category = makeUrlPath(job.Level4);
         levelOneUrl = makeUrlPath(job.Level1);
         levelTwoUrl = makeUrlPath(job.Level2);
