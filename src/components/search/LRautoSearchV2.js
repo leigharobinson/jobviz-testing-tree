@@ -176,47 +176,49 @@ export const LrAutoSearchV2 = (props) => {
 
   return (
     <React.Fragment>
-      <div className="searchBoxParent">
-        <div id="search_border" className="search">
-          <input
-            id="search_bar"
-            type="text"
-            placeholder="Search Jobs"
-            className="search-box"
-            onChange={onChange}
-            onKeyDown={onKeyDown}
-            value={userInput}
-          />
-          <div className="searchIcon">
-            <input type="submit" value="" className="search-icon" />
+      <div className="jobviz-parent">
+        <div className="searchBoxParent">
+          <div id="search_border" className="search">
+            <input
+              id="search_bar"
+              type="text"
+              placeholder="Search Jobs"
+              className="search-box"
+              onChange={onChange}
+              onKeyDown={onKeyDown}
+              value={userInput}
+            />
+            <div className="searchIcon">
+              <input type="submit" value="" className="search-icon" />
+            </div>
           </div>
-        </div>
-        <div id="float-options">
-          {showOptions &&
-            userInput &&
-            (filteredOptions.length > 0 ? (
-              <ul className="options">
-                {filteredOptions.map((optionName, index) => {
-                  let className;
-                  if (index === activeOption) {
-                    className = "option-active";
-                  }
-                  return (
-                    <li
-                      className="{className}, option"
-                      key={optionName}
-                      onClick={onClick}
-                    >
-                      {optionName}
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <div className="no-options">
-                <em>No Option!</em>
-              </div>
-            ))}
+          <div id="float-options">
+            {showOptions &&
+              userInput &&
+              (filteredOptions.length > 0 ? (
+                <ul className="options">
+                  {filteredOptions.map((optionName, index) => {
+                    let className;
+                    if (index === activeOption) {
+                      className = "option-active";
+                    }
+                    return (
+                      <li
+                        className="{className}, option"
+                        key={optionName}
+                        onClick={onClick}
+                      >
+                        {optionName}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <div className="no-options">
+                  <em>No Option!</em>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </React.Fragment>
