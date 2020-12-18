@@ -1,77 +1,77 @@
-import React from "react";
-import {makeUrlPath} from "../Helper"
-
-
+import React, { useState, useEffect } from "react";
+import { makeUrlPath } from "../Helper";
 
 export const LevelTwoCard = (props) => {
-let jobs = props.jobs
-let levelOneUrl = props.levelOneUrl;
-let categoryStr = props.orderedCategory;
-// console.log("THis is category string", categoryStr)
-let category = makeUrlPath(categoryStr);
+  const [endpoint, setEndpoint] = useState(false);
 
-// LR look back at this, there must be simpler way
-let titleStr = "";
-const findObj = () => {
-  jobs.forEach((job)=> {   
-    if(job.Level2 === categoryStr) {
-      
-      let emtStr = job.title;
-      
-      titleStr = emtStr;
-    }
-  })
-}
-findObj();
+  let jobs = props.jobs;
+  let levelOneUrl = props.levelOneUrl;
+  let categoryStr = props.orderedCategory;
+  // console.log("THis is category string", categoryStr)
+  let category = makeUrlPath(categoryStr);
 
+  // LR look back at this, there must be simpler way
 
-// console.log(categoryStr);
-// console.log(titleStr);
+  useEffect(() => {
+    let titleStr = "";
+    const findObj = () => {
+      jobs.forEach((job) => {
+        if (job.Level2 === categoryStr) {
+          titleStr = job.title;
+        }
+      });
+    };
 
-// const handleCLick = () => {
-//   console.log (props.category + " was clicked")
-// }
+    const matching = () => {
+      if (titleStr !== categoryStr) {
+        setEndpoint(true);
+      }
+    };
+    findObj();
+    matching();
+  }, [categoryStr, jobs]);
 
-if(titleStr !== categoryStr) {
   return (
-        <>
-        <div className="jobviz-parent-card">                           
+    <>
+      {endpoint ? (
+        <div className="jobviz-parent-card">
           <div className="btn-container">
-            <div type="button"
-                  className="link-btn"
-                  onClick={() => {
-                    props.history.push(`/job-catagories/${levelOneUrl}/${category}`);
-                  }}>+</div>
-          </div>
-            <div id={categoryStr} className="listed-categories">
-                {categoryStr}
-            </div>
-
-
-      </div>
-      </>
-
-  )
-} else { 
-    return (
-        <>
-          <div className="jobviz-parent-card">
-            <div className="btn-container">                        
-              <div type="button" className="end-btn" onClick={() => {
-                   
-                    props.history.push(`/job-catagories/${levelOneUrl}/${category}/endpoint`);
-                  }}>🥨</div>
-            </div>
-            <div id={categoryStr} className="listed-categories">
-                    {categoryStr}
+            <div
+              type="button"
+              className="link-btn"
+              onClick={() => {
+                props.history.push(
+                  `/job-catagories/${levelOneUrl}/${category}`
+                );
+              }}
+            >
+              +
             </div>
           </div>
-              
-
-
-        
-        </>
-  );}
+          <div id={categoryStr} className="listed-categories">
+            {categoryStr}
+          </div>
+        </div>
+      ) : (
+        <div className="jobviz-parent-card">
+          <div className="btn-container">
+            <div
+              type="button"
+              className="end-btn"
+              onClick={() => {
+                props.history.push(
+                  `/job-catagories/${levelOneUrl}/${category}/endpoint`
+                );
+              }}
+            >
+              🥨
+            </div>
+          </div>
+          <div id={categoryStr} className="listed-categories">
+            {categoryStr}
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
-
-

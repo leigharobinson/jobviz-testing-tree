@@ -1,69 +1,65 @@
 import React, { useState, useEffect } from "react";
-import {Title} from "../title/Title"
-import "../styling/Style.css"
-import JobManager  from "../../modules/JobManager"
-// import { Autocomplete } from "../search/OldSearch"
-// import {AutoSearch} from "../search/AutoSearch"
-import {LrAutoSearchV2} from "../search/LRautoSearchV2"
-import {Table} from "../table/Table"
+import { Title } from "../title/Title";
+import "../styling/Style.css";
+import JobManager from "../../modules/JobManager";
+import { LrAutoSearchV2 } from "../search/LRautoSearchV2";
+import { Table } from "../table/Table";
 
 export const Jobs = (props) => {
-const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [jobTitleList, setJobTitleList] = useState([]);
+  const jobObj = "";
 
-const jobObj = "";
- //set job obj from GET call to state
- useEffect(() => {
+  //set Array of JobObjects to State
+  useEffect(() => {
     JobManager.getAll().then((jobs) => {
-        setJobs(jobs)
-    })
-}, []);
+      setJobs(jobs);
+    });
+  }, []);
 
-// console.log(jobs, "JOBS")
-   
-        ///THis is just a test run for search bar choices
-        ///is this where I should pull all titles?
-    //Search Functionality ???????
-    let jobTitleList =[]
-    const getAllJobNames = () => jobs.forEach((job) => {
-        if (!jobTitleList.includes(job.title)) {
-            jobTitleList.push(job.title)
+  //Once Jobs is set to state
+  useEffect(() => {
+    //get all job Titles for AutoSearch
+    const getAllJobNames = (jobs) => {
+      let jobTList = [];
+      jobs.forEach((job) => {
+        if (!jobTList.includes(job.title)) {
+          jobTList.push(job.title);
         }
-        })
+      });
+      setJobTitleList(jobTList);
+    };
+    ////Call the Function
+    getAllJobNames(jobs);
+  }, [jobs]);
 
-    getAllJobNames();
-    // console.log(jobTitleList, "Job Title list")
-
-return ( 
+  return (
     <>
-    <div>
+      <div>
         <Title />
-    </div>
-    <div>
-        {/* <AutoSearch jobs={jobs} jobTitleList={jobTitleList} /> */}
-        {/* <Autocomplete jobs={jobs} jobTitleList={jobTitleList} /> */}
+      </div>
+
+      <div>
         <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props} />
-    </div>
-    <div className="jobviz-parent"> 
-        
-            <div type="button"
-                className="link-btn"
-                onClick={() => {
-                props.history.push("/job-catagories");
-                // console.log("you clicked me");
-        }}> + </div>
-        
+      </div>
 
-            <p className="option">Jobs</p>
-        
-    
-    
-    </div>
-    <div className="jobviz-parent">
+      <div className="jobviz-parent">
+        <div
+          type="button"
+          className="link-btn"
+          onClick={() => {
+            props.history.push("/job-catagories");
+            // console.log("you clicked me");
+          }}
+        >
+          +
+        </div>
+
+        <p className="option">Jobs</p>
+      </div>
+      <div className="jobviz-parent">
         <Table jobObj={jobObj} {...props} />
-    </div>
-    
-</>
-
-)
-   
-        }
+      </div>
+    </>
+  );
+};

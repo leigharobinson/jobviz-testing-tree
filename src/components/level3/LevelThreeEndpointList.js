@@ -10,12 +10,15 @@ import { Table } from "../table/Table";
 import { LrAutoSearchV2 } from "../search/LRautoSearchV2";
 
 export const LevelThreeEndpointList = (props) => {
-  //All the objects in jobs array
+  //Array of job objects
   const [jobs, setJobs] = useState([]);
+  //Alphabetical list of job Names
   const [alphaList, setAlphaList] = useState([]);
-  //where we set the id of the category that was clicked to sate
+  //where I set the id of the category that was clicked to sate
   const [jobTitleList, setJobTitleList] = useState([]);
+  //Where I set name of job clicked to state
   const [jobName, setJobName] = useState([]);
+  //Where the clicked job's object is made avalile
   const [jobObj, setJobObj] = useState({
     id: 0,
     title: "",
@@ -134,7 +137,7 @@ export const LevelThreeEndpointList = (props) => {
       <div>
         <Title />
       </div>
-      <h1> PAGE I'M WORKING ON</h1>
+
       <div>
         <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props} />
       </div>

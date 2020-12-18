@@ -149,9 +149,6 @@ export const LrAutoSearchV2 = (props) => {
   }, [selectedJobObj, props.history]);
 
   const onKeyDown = (e) => {
-    // setActiveOption(e);
-    // setFilteredOption(e);
-
     if (e.keyCode === 13) {
       setUserInput(filteredOptions[activeOption]);
       setShowOptions(false);
@@ -168,10 +165,6 @@ export const LrAutoSearchV2 = (props) => {
       setActiveOption({ activeOption: activeOption + 1 });
     }
   };
-
-  ///////////try to match url path here?
-  //   console.log("Selected job", selectedJob)
-  // console.log("Selected Job Obj", selectedJobObj);
 
   return (
     <React.Fragment>
