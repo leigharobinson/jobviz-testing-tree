@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeUrlPath } from "../Helper";
 
 export const LevelOneCard = (props) => {
-  const [endpoint, setEndpoint] = useState(false);
+  const [endpoint, setEndpoint] = useState(true);
 
   const jobs = props.jobs;
   //String of Category
@@ -24,7 +24,7 @@ export const LevelOneCard = (props) => {
 
     const matching = () => {
       if (titleStr !== categoryStr) {
-        setEndpoint(true);
+        setEndpoint(false);
       }
     };
     findObj();
@@ -33,7 +33,7 @@ export const LevelOneCard = (props) => {
 
   return (
     <>
-      {endpoint ? (
+      {!endpoint ? (
         <div className="jobviz-parent-card">
           <div className="btn-container">
             <div
