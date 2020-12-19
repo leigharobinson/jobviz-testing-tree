@@ -2,26 +2,31 @@ import React, { useState, useEffect } from "react";
 import { makeUrlPath } from "../Helper";
 
 export const LevelThreeCard = (props) => {
-  const [endpoint, setEndpoint] = useState(false);
+  const [endpoint, setEndpoint] = useState(true);
   let levelOneUrl = props.levelOneUrl;
   let levelTwoUrl = props.levelTwoUrl;
   let categoryStr = props.orderedCategory;
   let category = makeUrlPath(categoryStr);
+
   let jobs = props.jobs;
 
   useEffect(() => {
+    // console.log(props.orderedCategory, "");
     let titleStr = "";
     const findObj = () => {
       jobs.forEach((job) => {
         if (job.Level3 === categoryStr) {
+          // console.log(job.Level3, "TEST");
           titleStr = job.title;
+          // console.log(titleStr, "TItle string");
         }
       });
     };
 
     const matching = () => {
       if (titleStr !== categoryStr) {
-        setEndpoint(true);
+        // console.log("titleStr", titleStr);
+        setEndpoint(false);
       }
     };
     findObj();
@@ -30,7 +35,7 @@ export const LevelThreeCard = (props) => {
 
   return (
     <>
-      {endpoint ? (
+      {!endpoint ? (
         <div className="jobviz-parent-card">
           <div className="btn-container">
             <div

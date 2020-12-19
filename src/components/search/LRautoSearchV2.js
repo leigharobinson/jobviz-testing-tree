@@ -70,18 +70,19 @@ export const LrAutoSearchV2 = (props) => {
       const jobCatagories = "job-catagories";
       let category = "";
       let title = selectedJobObj.title;
+      let ttl = selectedJobObj.ttl;
       let level0 = selectedJobObj.Level0;
       let level1 = selectedJobObj.Level1;
       let level2 = selectedJobObj.Level2;
       let level3 = selectedJobObj.Level3;
       let level4 = selectedJobObj.Level4;
 
-      if (title !== "" && title === level0) {
+      if (title !== "" && (title === level0 || ttl === level0)) {
         // console.log(level0, `/`);
         props.history.push(`/`);
       } else if (
         title !== "" &&
-        title === level1 &&
+        (title === level1 || ttl === level1) &&
         title !== level2 &&
         title !== level3 &&
         title !== level4
@@ -91,7 +92,7 @@ export const LrAutoSearchV2 = (props) => {
         props.history.push(`/${jobCatagories}/${category}`);
       } else if (
         title !== "" &&
-        title === level2 &&
+        (title === level2 || ttl === level2) &&
         title !== level1 &&
         title !== level3 &&
         title !== level4
@@ -105,7 +106,7 @@ export const LrAutoSearchV2 = (props) => {
         props.history.push(`/${jobCatagories}/${level1}/${category}/endpoint`);
       } else if (
         title !== "" &&
-        title === level3 &&
+        (title === level3 || ttl === level3) &&
         title !== level1 &&
         title !== level2 &&
         title !== level4
@@ -123,7 +124,7 @@ export const LrAutoSearchV2 = (props) => {
         );
       } else if (
         title !== "" &&
-        title === level4 &&
+        (title === level4 || ttl === level4) &&
         title !== level1 &&
         title !== level2 &&
         title !== level3

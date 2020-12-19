@@ -127,6 +127,7 @@ export const LevelTwoList = (props) => {
       <div>
         <Title />
       </div>
+
       <div>
         <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props} />
       </div>

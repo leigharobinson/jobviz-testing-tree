@@ -7,7 +7,7 @@ export const LevelFourCard = (props) => {
   let levelThreeUrl = props.levelThreeUrl;
   let categoryStr = props.orderedCategory;
   let category = makeUrlPath(categoryStr);
-  console.log(categoryStr, "level four");
+
   // let jobs = props.jobs
   // LR look back at this, there must be simpler way
 
