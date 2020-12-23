@@ -137,7 +137,7 @@ export const LevelThreeEndpointList = (props) => {
       <div>
         <Title />
       </div>
-      <h1>HWEW YOu Are level 3 endpoint list</h1>
+
       <div>
         <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props} />
       </div>
