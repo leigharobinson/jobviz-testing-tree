@@ -13,18 +13,17 @@ export const LevelFourCard = (props) => {
 
   return (
     <>
-      <div className="jobviz-parent-card">
+      <div
+        className="jobviz-parent-card"
+        onClick={() => {
+          props.history.push(
+            `/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}/${category}/endpoint`
+          );
+        }}
+      >
         <div className="btn-container">
-          <div
-            type="button"
-            className="end-btn"
-            onClick={() => {
-              props.history.push(
-                `/job-catagories/${levelOneUrl}/${levelTwoUrl}/${levelThreeUrl}/${category}/endpoint`
-              );
-            }}
-          >
-            🥨
+          <div type="button" className="end-btn">
+            🍁
           </div>
         </div>
         <div id={categoryStr} className="listed-categories">

@@ -173,7 +173,7 @@ export const LevelTwoList = (props) => {
                 <div
                   key={i}
                   className="option"
-                  onClick={() => setJobName(orderedCategory)}
+                  // onClick={() => setJobName(orderedCategory)}
                 >
                   <LevelTwoCard
                     key={orderedCategory}

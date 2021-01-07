@@ -143,8 +143,8 @@ export const LevelOneList = (props) => {
               return (
                 <div
                   key={i}
-                  onClick={() => setJobName(orderedCategory)}
-                  className=""
+                  // onClick={() => setJobName(orderedCategory)}
+                  className="option"
                 >
                   <LevelOneCard
                     key={orderedCategory}

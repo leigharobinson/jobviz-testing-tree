@@ -133,7 +133,7 @@ export const LevelTwoEndpointList = (props) => {
       </div>
 
       <div className="jobviz-header">
-        <h4>{levelOneString}</h4>
+        <h4>{endpointString}</h4>
       </div>
       <div className="crumbs">
         <small>
