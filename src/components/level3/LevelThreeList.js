@@ -200,7 +200,7 @@ export const LevelThreeList = (props) => {
               <div
                 key={i}
                 className="option"
-                onClick={() => setJobName(orderedCategory)}
+                // onClick={() => setJobName(orderedCategory)}
               >
                 <LevelThreeCard
                   key={orderedCategory}

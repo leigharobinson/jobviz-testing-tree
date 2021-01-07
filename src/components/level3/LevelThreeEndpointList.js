@@ -201,8 +201,6 @@ export const LevelThreeEndpointList = (props) => {
                 key={orderedCategory}
                 className="option"
                 onClick={() => {
-                  //   console.log("you clicked me");
-                  //   console.log(orderedCategory);
                   setJobName(orderedCategory);
                 }}
               >

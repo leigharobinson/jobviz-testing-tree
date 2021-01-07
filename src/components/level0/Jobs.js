@@ -42,20 +42,24 @@ export const Jobs = (props) => {
       <div>
         <LrAutoSearchV2 jobs={jobs} jobTitleList={jobTitleList} {...props} />
       </div>
-
       <div className="jobviz-parent">
-        <div
-          type="button"
-          className="link-btn"
-          onClick={() => {
-            props.history.push("/job-catagories");
-            // console.log("you clicked me");
-          }}
-        >
-          +
-        </div>
+        <div className="container-cards">
+          <div
+            className="option"
+            onClick={() => {
+              props.history.push("/job-catagories");
+              // console.log("you clicked me");
+            }}
+          >
+            <div className="jobviz-parent-card">
+              <div type="button" className="link-btn">
+                +
+              </div>
 
-        <p className="option">Jobs</p>
+              <p>Jobs</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="jobviz-parent">
         <Table jobObj={jobObj} {...props} />

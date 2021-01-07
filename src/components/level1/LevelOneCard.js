@@ -34,19 +34,18 @@ export const LevelOneCard = (props) => {
   return (
     <>
       {!endpoint ? (
-        <div className="jobviz-parent-card">
+        <div
+          className="jobviz-parent-card"
+          onClick={() => {
+            props.history.push(`/job-catagories/${category}`);
+          }}
+        >
           <div className="btn-container">
-            <div
-              type="button"
-              className="link-btn"
-              onClick={() => {
-                props.history.push(`/job-catagories/${category}`);
-              }}
-            >
+            <div type="button" className="link-btn">
               +
             </div>
           </div>
-          <div id={categoryStr} className="listed-categories option">
+          <div id={categoryStr} className="listed-categories">
             {categoryStr}
           </div>
         </div>
